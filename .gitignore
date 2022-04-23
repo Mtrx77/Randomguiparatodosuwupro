@@ -60,7 +60,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end)
           section4:addButton("Start Spining", function()
             while true do task.wait()
-                for i = 1, 20 do
+                for i = 1, 15 do
                     task.spawn(function()
                         game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
                         game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
