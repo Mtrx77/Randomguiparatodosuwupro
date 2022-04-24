@@ -4,7 +4,7 @@ local venyx = library.new("NAM Hub | Matrixxx#9999 | JAS#0027", 5013109572)
 
 -- themes
 local themes = {
-    Background = Color3.fromRGB(241, 224, 224),
+    Background = Color3.fromRGB(32, 32, 32),
     Glow = Color3.fromRGB(43, 255, 0),
     Accent = Color3.fromRGB(10, 10, 10),
     LightContrast = Color3.fromRGB(20, 20, 20),
@@ -14,6 +14,8 @@ local themes = {
 
 -- Variables
 local stats = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.StatModuleClient)
+local x
+local pllist = {}
 --AntiAFK
    local vu = game:GetService("VirtualUser")
    game:GetService("Players").LocalPlayer.Idled:connect(function()
@@ -24,10 +26,12 @@ end)
 -- first page
 local page = venyx:addPage("Training", 5012544693)
 local page2 = venyx:addPage("Infinite Spins", 5012544693)
+local page3 = venyx:addPage("Teleport", 5012544693)
 local section1 = page:addSection("Strength")
 local section2 = page:addSection("Chakra")
 local section3 = page:addSection("Durability")
 local section4 = page2:addSection("Infinite Spins")
+local section5 = page3:addSection("Teleport to Players")
 section1:addToggle("Train", nil, function(Strength)
    
     getgenv().toggle1 = Strength
@@ -59,16 +63,26 @@ section2:addToggle("Train", nil, function(Chakra)
         end
         end)
           section4:addButton("Start Spining", function()
-            while true do task.wait()
-                for i = 1, 15 do
+            
+                    for i = 0,500 do
                     task.spawn(function()
+                        while wait() do
                         game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
                         game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
+                        end
                     end)
                 end
-            end
+            
                 end)
-
+                
+        
+                 section5:addDropdown("In Testing", pllist, function(jugador) 
+                    
+                    
+             end) 
+               
+                    
+                
                 for theme, color in pairs(themes) do
                     library:setTheme(theme, color)
                 end          
