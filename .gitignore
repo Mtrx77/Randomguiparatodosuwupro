@@ -16,13 +16,7 @@ local themes = {
 local stats = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.StatModuleClient)
 local x
 local pllist = {}
---AntiAFK
-   local vu = game:GetService("VirtualUser")
-   game:GetService("Players").LocalPlayer.Idled:connect(function()
-   vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-   wait(1)
-   vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-end)
+
 -- first page
 local page = venyx:addPage("Training", 5012544693)
 local page2 = venyx:addPage("Infinite Spins", 5012544693)
@@ -57,7 +51,7 @@ section2:addToggle("Train", nil, function(Chakra)
     end)
     section2:addButton("Train Chakra OP (In Testing)", function()
         game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It may take some time", Duration = 15})
-         for i=0, 14340 do
+        for i=0, 14340 do
         task.spawn(function()
             stats.SendToServer("Chakra")
         end)
@@ -101,3 +95,88 @@ section2:addToggle("Train", nil, function(Chakra)
 
 -- load
 venyx:SelectPage(venyx.pages[1], true)
+--AntiAFK
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+wait(1)
+--Chat
+bc = BrickColor.new("Lime green")
+    
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: YO!";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(2)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Matrix there";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(5)
+      
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Well it's not really me, I'm probably asleep, doing homework or watching anime, anyway this is a chat system, so every time you open the script there will be messages explaining new features of the script and things in the script that I need to explain.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(10)
+      
+bc = BrickColor.new(0, 255, 242)
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: First of all the fast chakra function is in testing, sometimes it usually gives more increases and sometimes not, after it finishes giving the increases, wait a while to use the function again or you can also rejoin.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(10)
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+    
+    Text = "[Scripter][Matrixplayer]: apart from that the script works fine and shouldn't have any problems, functions like teleport or autofarm are under development. ";
+    
+    Font = Enum.Font.Highway;
+    
+    Color = bc.Color;
+    
+    FontSize = Enum.FontSize.Size8;
+    })
+    wait(8)
+        bc = BrickColor.new("Lime green")
+        game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+        Text = "[Scripter][Matrixplayer]: That's all for now, have a nice day OwO";
+        
+        Font = Enum.Font.Highway;
+        
+        Color = bc.Color;
+        
+        FontSize = Enum.FontSize.Size8;
+        })
