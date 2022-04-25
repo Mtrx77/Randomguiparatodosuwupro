@@ -80,7 +80,7 @@ section2:addToggle("Train", nil, function(Chakra)
                 end)
                    
                     
-                 section5:addDropdown("Players", {"plr"}, function(jugador) 
+                 section5:addDropdown("In testing", {"plr"}, function(jugador) 
                     
                     
              end) 
