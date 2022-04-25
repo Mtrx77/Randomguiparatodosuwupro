@@ -1,3 +1,4 @@
+local Players = game:GetService("Players")
 -- init
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
 local venyx = library.new("NAM Hub | Matrixxx#9999 | JAS#0027", 5013109572)
@@ -77,9 +78,9 @@ section2:addToggle("Train", nil, function(Chakra)
                 end
             
                 end)
-                
-        
-                 section5:addDropdown("In Testing", pllist, function(jugador) 
+                   
+                    
+                 section5:addDropdown("Players", {"plr"}, function(jugador) 
                     
                     
              end) 
@@ -158,6 +159,21 @@ Color = bc.Color;
 FontSize = Enum.FontSize.Size8;
 })
 wait(10)
+      
+bc = BrickColor.new("Really red")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: those who have the (Chakra Healing) gamepass will not be able to use the Chakra Op function. ";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(10)
+bc = BrickColor.new(0, 255, 242)
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
     
     Text = "[Scripter][Matrixplayer]: apart from that the script works fine and shouldn't have any problems, functions like teleport or autofarm are under development. ";
