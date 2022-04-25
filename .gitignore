@@ -164,7 +164,7 @@ bc = BrickColor.new("Really red")
 
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
 
-Text = "[Scripter][Matrixplayer]: those who have the (Chakra Healing) gamepass will not be able to use the Chakra Op function. ";
+Text = "[Scripter][Matrixplayer]: Some of those who have the (Chakra Healing) gamepass will probably have trouble using Chakra Op function. ";
 
 Font = Enum.Font.Highway;
 
