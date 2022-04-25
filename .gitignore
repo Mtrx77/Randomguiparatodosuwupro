@@ -56,7 +56,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end
     end)
     section2:addButton("Train Chakra OP (In Testing)", function()
-         for i=0, 3400 do
+         for i=0, 14340 do
         task.spawn(function()
             stats.SendToServer("Chakra")
         end)
