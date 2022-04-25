@@ -56,6 +56,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end
     end)
     section2:addButton("Train Chakra OP (In Testing)", function()
+        game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It may take some time", Duration = 15})
          for i=0, 14340 do
         task.spawn(function()
             stats.SendToServer("Chakra")
