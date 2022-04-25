@@ -48,10 +48,18 @@ end)
 section2:addToggle("Train", nil, function(Chakra)
     getgenv().toggle2 = Chakra
     while wait() do
-        wait(.7)
         if getgenv().toggle2 == true then
-         stats.SendToServer("Chakra")
+            task.spawn(function()
+                stats.SendToServer("Chakra")
+            end)
         end
+        end
+    end)
+    section2:addButton("Train Chakra OP (In Testing)", function()
+         for i=0, 3400 do
+        task.spawn(function()
+            stats.SendToServer("Chakra")
+        end)
     end
     end)
     section3:addToggle("Train", nil, function(Durability)                                 
@@ -64,7 +72,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end)
           section4:addButton("Start Spining", function()
             
-                    for i = 0,150 do
+                    for i = 0,100 do
                     task.spawn(function()
                         while wait() do
                         game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
