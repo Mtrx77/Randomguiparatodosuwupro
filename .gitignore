@@ -15,10 +15,12 @@ for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     end
     wait(1)
     game.Players.PlayerAdded:Connect(function(player)
+    wait(1)
         table.insert(playerl,player.Name)
     end)
     wait(1)
     game.Players.PlayerRemoving:Connect(function(player)
+        wait(1)
      for i=0,50 do
      if i == table.find(playerl,player.Name) then
         table.remove(playerl,i)
