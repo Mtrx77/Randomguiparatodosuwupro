@@ -112,7 +112,7 @@ section2:addToggle("Train", nil, function(Chakra)
                 
 
                  section5:addDropdown("Players", playerl, function(jugador)
-                    wait(0.5) 
+                    wait() 
                     for _, value in pairs(game:GetService("Players"):GetPlayers()) do
                         if value.Name == jugador then
                            tp = value
