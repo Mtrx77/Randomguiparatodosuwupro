@@ -75,7 +75,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end
     end)
     section2:addButton("Train Chakra OP (In Testing)", function()
-        game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It may take some time", Duration = 15})
+        game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It can take a minute or a little more to start training", Duration = 15})
         coroutine.wrap(function()
             while wait(60) do
             for i=0, 14000 do
