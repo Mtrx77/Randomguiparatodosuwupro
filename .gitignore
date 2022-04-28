@@ -54,7 +54,6 @@ local section4 = page2:addSection("Infinite Spins")
 local section5 = page3:addSection("Teleport to Players")
 local section6 = page3:addSection("Teleport to Dimensions")
 section1:addToggle("Train", nil, function(Strength)
-   wait()
     getgenv().toggle1 = Strength
 
    while wait() do
@@ -67,7 +66,6 @@ section1:addToggle("Train", nil, function(Strength)
 end)
  
 section2:addToggle("Train", nil, function(Chakra)
-    wait()
     getgenv().toggle2 = Chakra
     while wait() do
         if getgenv().toggle2 == true then
@@ -78,7 +76,6 @@ section2:addToggle("Train", nil, function(Chakra)
         end
     end)
     section2:addButton("Train Chakra OP (In Testing)", function()
-        wait()
         game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It can take a minute or a little more to start training", Duration = 15})
         coroutine.wrap(function()
             while wait(60) do
@@ -90,8 +87,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end
         end)()
     end)
-    section3:addToggle("Train", nil, function(Durability)    
-        wait()                             
+    section3:addToggle("Train", nil, function(Durability)                                
         getgenv().toggle3 = Durability
         while wait() do
             if getgenv().toggle3 == true then
@@ -100,7 +96,6 @@ section2:addToggle("Train", nil, function(Chakra)
         end
         end)
           section4:addButton("Start Spining", function()
-            wait()
                     for i = 0,100 do
                     task.spawn(function()
                         while wait() do
@@ -114,7 +109,6 @@ section2:addToggle("Train", nil, function(Chakra)
                 
 
                  section5:addDropdown("Players", playerl, function(jugador)
-                    wait() 
                     for _, value in pairs(game:GetService("Players"):GetPlayers()) do
                         if value.Name == jugador then
                            tp = value
