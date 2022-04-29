@@ -96,14 +96,7 @@ section2:addToggle("Train", nil, function(Chakra)
         end
         end)
           section4:addButton("Start Spining", function()
-                    for i = 0,100 do
-                    task.spawn(function()
-                        while wait() do
-                        game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
-                        game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
-                        end
-                    end)
-                end
+     game.StarterGui:SetCore("SendNotification",{Title = "Patched", Text = "", Duration = 15})
             
                 end)
                 
