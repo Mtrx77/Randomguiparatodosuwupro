@@ -8,7 +8,6 @@ local tp
 local random = math.random(1,2)
 local l
 --algunos ciclos
-wait(1)
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     if v ~= game.Players.LocalPlayer then 
         table.insert(playerl,v.Name)
@@ -81,7 +80,6 @@ local TeleportD = Teleport1:addSection({
 local Conceal1 = Players1:addSection({
     title = "Total Power"
 })
-wait(1)
 TrainStrength:addToggle({
     title = "Train",
     callback = function(Strength)
