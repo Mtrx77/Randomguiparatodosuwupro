@@ -240,8 +240,7 @@ Conceal1:addButton({
                 end
             end
             game.Players.PlayerAdded:Connect(function(player)
-                wait(7)
-                while wait() do
+                while wait(10) do
                local players = game.Players:GetPlayers()
             for i, v in pairs(players) do
                 for i2, v2 in pairs(v.Character:GetChildren()) do
