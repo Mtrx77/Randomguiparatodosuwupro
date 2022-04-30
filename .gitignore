@@ -217,7 +217,7 @@ TeleportD:addDropdown({
     end
 })
 Conceal1:addButton({
-    title = "Enable Total Power of all players",
+    title = "See Total Power of all players",
     callback = function()
         while wait(2) do
             local players = game.Players:GetPlayers()
