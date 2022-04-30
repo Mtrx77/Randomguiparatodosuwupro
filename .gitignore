@@ -219,7 +219,7 @@ TeleportD:addDropdown({
 Conceal1:addButton({
     title = "Enable Total Power of all players",
     callback = function()
-        while wait() do
+        while wait(2) do
             local players = game.Players:GetPlayers()
             for i, v in pairs(players) do
                  for i2, v2 in pairs(v.Character:GetChildren()) do
@@ -240,7 +240,8 @@ Conceal1:addButton({
                 end
             end
             game.Players.PlayerAdded:Connect(function(player)
-                while wait(10) do
+                wait(7)
+                while wait(2) do
                local players = game.Players:GetPlayers()
             for i, v in pairs(players) do
                 for i2, v2 in pairs(v.Character:GetChildren()) do
