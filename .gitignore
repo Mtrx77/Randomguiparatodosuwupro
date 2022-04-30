@@ -5,22 +5,19 @@ until game:IsLoaded()
 local stats = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.StatModuleClient)
 local playerl = {}
 local tp
+local random = math.random(1,2)
 local l
 --algunos ciclos
-    wait(1)
+wait(1)
 for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     if v ~= game.Players.LocalPlayer then 
         table.insert(playerl,v.Name)
     end
     end
-    wait(1)
     game.Players.PlayerAdded:Connect(function(player)
-    wait(1)
         table.insert(playerl,player.Name)
     end)
-    wait(1)
     game.Players.PlayerRemoving:Connect(function(player)
-        wait(1)
      for i=0,50 do
      if i == table.find(playerl,player.Name) then
         table.remove(playerl,i)
@@ -28,54 +25,91 @@ for i, v in pairs(game:GetService("Players"):GetPlayers()) do
     end
     end)
     wait(1)
--- init
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("NAM Hub | Matrixxx#9999 | JAS#0027", 5013109572)
+-- // Initialising the UI
+local Venyx = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venyx-UI-Library/main/source2.lua"))()
+local UI = Venyx.new({
+    title = "NAM Hub | Matrixxx#9999 | JAS#0027"
+})
 
--- themes
-local themes = {
-    Background = Color3.fromRGB(32, 32, 32),
-    Glow = Color3.fromRGB(43, 255, 0),
+local Themes = {
+    Background = Color3.fromRGB(14, 13, 13),
+    Glow = Color3.fromRGB(0, 0, 0),
     Accent = Color3.fromRGB(10, 10, 10),
     LightContrast = Color3.fromRGB(20, 20, 20),
     DarkContrast = Color3.fromRGB(14, 14, 14),  
-    TextColor = Color3.fromRGB(72, 255, 0)
-    }
+    TextColor = Color3.fromRGB(255, 153, 0)
+}
 
+local Training1 = UI:addPage({
+    title = "Training",
+    icon = 5012544693
+})
+local Spins = UI:addPage({
+    title = "Infinite Spins",
+    icon = 5012544693
+})
+local Teleport1 = UI:addPage({
+    title = "Teleport",
+    icon = 5012544693
+})
+local Players1 = UI:addPage({
+    title = "Players",
+    icon = 5012544693
+})
 
--- first page
-local page = venyx:addPage("Training", 5012544693)
-local page2 = venyx:addPage("Infinite Spins", 5012544693)
-local page3 = venyx:addPage("Teleport", 5012544693)
-local section1 = page:addSection("Strength")
-local section2 = page:addSection("Chakra")
-local section3 = page:addSection("Durability")
-local section4 = page2:addSection("Infinite Spins")
-local section5 = page3:addSection("Teleport to Players")
-local section6 = page3:addSection("Teleport to Dimensions")
-section1:addToggle("Train", nil, function(Strength)
-    getgenv().toggle1 = Strength
-
-   while wait() do
-       if getgenv().toggle1 == true then
-        wait()
-        stats.SendToServer("Strength")
-       end
-   end
-
-end)
- 
-section2:addToggle("Train", nil, function(Chakra)
-    getgenv().toggle2 = Chakra
-    while wait() do
-        if getgenv().toggle2 == true then
-            task.spawn(function()
-                stats.SendToServer("Chakra")
-            end)
+local TrainStrength = Training1:addSection({
+    title = "Strength"
+})
+local TrainChakra = Training1:addSection({
+    title = "Chakra"
+})
+local TrainDurability = Training1:addSection({
+    title = "Durability"
+})
+local TrainSword = Training1:addSection({
+    title = "Sword"
+})
+local InfiniteSpins = Spins:addSection({
+    title = "Infinite Spins"
+})
+local TeleportP = Teleport1:addSection({
+    title = "Teleport to Players"
+})
+local TeleportD = Teleport1:addSection({
+    title = "Teleport to Dimensions"
+})
+local Conceal1 = Players1:addSection({
+    title = "Total Power"
+})
+wait(1)
+TrainStrength:addToggle({
+    title = "Train",
+    callback = function(Strength)
+        getgenv().toggle1 = Strength
+        while wait() do
+            if getgenv().toggle1 == true then
+             wait()
+             stats.SendToServer("Strength")
+            end
         end
-        end
-    end)
-    section2:addButton("Train Chakra OP (In Testing)", function()
+    end
+})
+TrainChakra:addToggle({
+    title = "Train",
+    callback = function(Chakra)
+        getgenv().toggle2 = Chakra
+        while wait() do
+            if getgenv().toggle2 == true then
+                task.spawn(function()
+                    stats.SendToServer("Chakra")
+                end)
+            end
+            end
+    end
+})
+TrainChakra:addButton({
+    title = "Train Chakra OP",
+    callback = function()
         game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It can take a minute or a little more to start training", Duration = 15})
         coroutine.wrap(function()
             while wait(60) do
@@ -86,69 +120,165 @@ section2:addToggle("Train", nil, function(Chakra)
             end
         end
         end)()
-    end)
-    section3:addToggle("Train", nil, function(Durability)                                
+    end
+})
+TrainDurability:addToggle({
+    title = "Train",
+    callback = function(Durability)
         getgenv().toggle3 = Durability
         while wait() do
             if getgenv().toggle3 == true then
              stats.SendToServer("Durability")
             end
         end
-        end)
-          section4:addButton("Start Spining", function()
-     game.StarterGui:SetCore("SendNotification",{Title = "Patched", Text = "", Duration = 15})
-            
-                end)
-                
+    end
+})
+TrainSword:addToggle({
+    title = "Train",
+    callback = function(Sword)
+        getgenv().toggle4 = Sword
+        if getgenv().toggle4 == true then game.StarterGui:SetCore("SendNotification",{Title = "Hey", Text = "Remember to equip the sword", Duration = 7})
+        while wait() do
+            if getgenv().toggle4 == true then
+             stats.SendToServer("Sword")
+            end
+        end
+    end
+end
+})
 
-                 section5:addDropdown("Players", playerl, function(jugador)
-                    for _, value in pairs(game:GetService("Players"):GetPlayers()) do
-                        if value.Name == jugador then
-                           tp = value
-                        end
+InfiniteSpins:addButton({
+    title = "Start Spining",
+    callback = function()
+        if game.PlaceId == 7220986579 or game.PlaceId == 7220975160 then 
+            for i = 0,100 do
+                task.spawn(function()
+                    while wait() do
+                    game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
+                    game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
                     end
-             end) 
-             section5:addToggle("Teleport to player", nil, function(teleport)   
-                wait()                              
-                getgenv().toggle4 = teleport
-                while wait() do
-                    if getgenv().toggle4 == true then
-                        for i2, v2 in pairs(tp.Character:GetChildren()) do
-                            if v2.Name == "HumanoidRootPart" then
-                               l = v2.Position
-                            end
-                        end
-                        task.spawn(function()
-                            
-                            local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                            local location = CFrame.new(l)
-                            local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                            pl.CFrame = location
-                            end)
-                        
+                end)
+            end 
+        else 
+            game.StarterGui:SetCore("SendNotification",{Title = "Use it in dungeon", Text = "Only works in dungeons", Duration = 5})
+            wait(5)
+            game.StarterGui:SetCore("SendNotification",{Title = "Teleporting", Text = "You will be teleported to a dungeon", Duration = 5})
+            wait(5)
+            if random == 1 then game:GetService("TeleportService"):Teleport(7220975160)
+                elseif random == 2  then game:GetService("TeleportService"):Teleport(7220986579)
+                end
+            
+    end
+    end
+})
+TeleportP:addDropdown({
+    title = "Players",
+    list = playerl,
+    callback = function(jugador)
+        for _, value in pairs(game:GetService("Players"):GetPlayers()) do
+            if value.Name == jugador then
+               tp = value
+            end
+        end
+    end
+})
+TeleportP:addToggle({
+    title = "Teleport To Player",
+    callback = function(teleport)
+        getgenv().toggle5 = teleport
+        while wait() do
+            if getgenv().toggle5 == true then
+                for i2, v2 in pairs(tp.Character:GetChildren()) do
+                    if v2.Name == "HumanoidRootPart" then
+                       l = v2.Position
                     end
                 end
-                end)
-                section6:addDropdown("Dimensions", {"Dimension 1","Dimension 2","Dimension 3","Dimension 4","Dimension 5","Dimension 6",}, function(dimension) 
-                    if dimension == "Dimension 1" then game:GetService("TeleportService"):Teleport(4042427666)
-                        elseif dimension == "Dimension 2"  then game:GetService("TeleportService"):Teleport(5113678354) 
-                        elseif dimension == "Dimension 3"  then game:GetService("TeleportService"):Teleport(5113680396) 
-                        elseif dimension == "Dimension 4"  then game:GetService("TeleportService"):Teleport(5445525505) 
-                        elseif dimension == "Dimension 5"  then game:GetService("TeleportService"):Teleport(6479720355) 
-                        elseif dimension == "Dimension 6"  then game:GetService("TeleportService"):Teleport(9386500519) 
+                task.spawn(function() 
+                    local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local location = CFrame.new(l)
+                    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                    pl.CFrame = location
+                    end)
+            end
+        end
+    end
+})
+TeleportD:addDropdown({
+    title = "Dimensions",
+    list = {"Dimension 1","Dimension 2","Dimension 3","Dimension 4","Dimension 5","Dimension 6",},
+    callback = function(dimension)
+        if dimension == "Dimension 1" then game:GetService("TeleportService"):Teleport(4042427666)
+        elseif dimension == "Dimension 2"  then game:GetService("TeleportService"):Teleport(5113678354) 
+        elseif dimension == "Dimension 3"  then game:GetService("TeleportService"):Teleport(5113680396) 
+        elseif dimension == "Dimension 4"  then game:GetService("TeleportService"):Teleport(5445525505) 
+        elseif dimension == "Dimension 5"  then game:GetService("TeleportService"):Teleport(6479720355) 
+        elseif dimension == "Dimension 6"  then game:GetService("TeleportService"):Teleport(9386500519) 
+        end
+    end
+})
+Conceal1:addButton({
+    title = "Enable Total Power of all players",
+    callback = function()
+        while wait() do
+            local players = game.Players:GetPlayers()
+            for i, v in pairs(players) do
+                 for i2, v2 in pairs(v.Character:GetChildren()) do
+                    if v2.Name == "HumanoidRootPart" then
+                        for i3, v3 in pairs(v2:GetChildren()) do
+                            if v3.Name == "TotalPower" then
+                                if v3.Enabled == false then
+                                    v3.Enabled = true
+                                    for i4, v4 in pairs(v3:GetChildren()) do
+                                        if v4.Name == "Num" then
+                                            v4.TextColor3 = Color3.new(0, 0.717647, 1) 
+                                        end
+                                    end
+                                end
+                            end
                         end
-             end) 
-                
-                for theme, color in pairs(themes) do
-                    library:setTheme(theme, color)
-                end          
-            
-           
+                    end
+                end
+            end
+            game.Players.PlayerAdded:Connect(function(player)
+                wait(7)
+               local players = game.Players:GetPlayers()
+            for i, v in pairs(players) do
+                for i2, v2 in pairs(v.Character:GetChildren()) do
+                   if v2.Name == "HumanoidRootPart" then
+                       for i3, v3 in pairs(v2:GetChildren()) do
+                           if v3.Name == "TotalPower" then
+                               if v3.Enabled == false then
+                                   v3.Enabled = true
+                                   for i4, v4 in pairs(v3:GetChildren()) do
+                                    if v4.Name == "Num" then
+                                        v4.TextColor3 = Color3.new(0, 0.717647, 1) 
+                                    end
+                                   end
+                               end
+                           end
+                       end
+                   end
+               end
+            end
+            end)
+            end
+    end
+})
 
 
--- load
-venyx:SelectPage(venyx.pages[1], true)
---AntiAFK
+for i, v in pairs(Themes) do
+            UI:setTheme({
+                theme = i,
+                color3 = v
+            })
+end
+
+-- // Load
+UI:SelectPage({
+    page = UI.pages[1], 
+    toggle = true
+})
+--Anti-afk
 local vu = game:GetService("VirtualUser")
 game:GetService("Players").LocalPlayer.Idled:connect(function()
 vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
@@ -156,12 +286,11 @@ wait(1)
 vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
 wait(1)
---Chat
-bc = BrickColor.new(0, 255, 242)
-    
+bc = BrickColor.new("Lime green")
+
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
 
-Text = "[Scripter][Matrixplayer]: Hi there";
+Text = "[Scripter][Matrixplayer]: YO!!.";
 
 Font = Enum.Font.Highway;
 
@@ -170,65 +299,10 @@ Color = bc.Color;
 FontSize = Enum.FontSize.Size8;
 })
 wait(2)
-bc = BrickColor.new(0, 255, 242)
-
-game.StarterGui:SetCore("ChatMakeSystemMessage", {
-
-Text = "[Scripter][Matrixplayer]: Well, I already updated the hub, these are the new features.";
-
-Font = Enum.Font.Highway;
-
-Color = bc.Color;
-
-FontSize = Enum.FontSize.Size8;
-})
-wait(4)
-      
-bc = BrickColor.new("New Yeller")
-
-game.StarterGui:SetCore("ChatMakeSystemMessage", {
-
-Text = "+AutoTrain Chakra OP";
-
-Font = Enum.Font.Highway;
-
-Color = bc.Color;
-
-FontSize = Enum.FontSize.Size8;
-})
-wait(2)
-      
-bc = BrickColor.new("New Yeller")
-
-game.StarterGui:SetCore("ChatMakeSystemMessage", {
-
-Text = "+Teleport to Players";
-
-Font = Enum.Font.Highway;
-
-Color = bc.Color;
-
-FontSize = Enum.FontSize.Size8;
-})
-wait(2)
-      
-bc = BrickColor.new("New Yeller")
-
-game.StarterGui:SetCore("ChatMakeSystemMessage", {
-
-Text = "+Teleport to any dimension";
-
-Font = Enum.Font.Highway;
-
-Color = bc.Color;
-
-FontSize = Enum.FontSize.Size8;
-})
-wait(3)
 bc = BrickColor.new("Lime green")
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
     
-    Text = "[Scripter][Matrixplayer]: Well that's all the new features for now, I'll be adding more, but I've been busy. ";
+    Text = "[Scripter][Matrixplayer]: I just updated the script, these are the new features. ";
     
     Font = Enum.Font.Highway;
     
@@ -236,63 +310,55 @@ game.StarterGui:SetCore("ChatMakeSystemMessage", {
     
     FontSize = Enum.FontSize.Size8;
     })
-        wait(5)
-        bc = BrickColor.new("Lime green")
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
+    wait(5)
+    bc = BrickColor.new("Toothpaste")
 
-        Text = "[Scripter][Matrixplayer]: I wanted to explain how the Chakra OP function works now, basically when you press the Chakra OP button, every minute that function will be executed automatically, without having the need as before to press the button every so often.";
-        
-        Font = Enum.Font.Highway;
-        
-        Color = bc.Color;
-        
-        FontSize = Enum.FontSize.Size8;
-        })
-        bc = BrickColor.new("Lime green")
-        wait(8)
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-        
-            Text = "[Scripter][Matrixplayer]: So basically now chakra op is executed once every minute when you press the button, that is to say that if you press the button now, you have to wait a minute for it to give you the increments and the function will be executed automatically every minute, sometimes it can give you more increments and sometimes not, so be patient.";
-        
-        Font = Enum.Font.Highway;
-        
-        Color = bc.Color;
-        
-        FontSize = Enum.FontSize.Size8;
-        })
-        bc = BrickColor.new("Really red")
-        wait(8)
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-        
-            Text = "[Scripter][Matrixplayer]: REMEMBER NOT TO BE IN CHAKRA POSE WHEN USING CHAKRA OP, IT WILL PROBABLY PREVENT YOU FROM GAINING INCREMENTS.";
-        
-        Font = Enum.Font.Highway;
-        
-        Color = bc.Color;
-        
-        FontSize = Enum.FontSize.Size8;
-        })
-        bc = BrickColor.new("Lime green")
-        wait(8)
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-        
-            Text = "[Scripter][Matrixplayer]: And finally, I forgot to mention that the anti-afk is always active, so you don't need to have the autoclicker or anything like that. ";
-        
-        Font = Enum.Font.Highway;
-        
-        Color = bc.Color;
-        
-        FontSize = Enum.FontSize.Size8;
-        })
-        bc = BrickColor.new(0, 255, 242)
-        wait(8)
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-        
-            Text = "[Scripter][Matrixplayer]: Well that's all for now, have a nice day, afternoon, night or whatever. ";
-        
-        Font = Enum.Font.Highway;
-        
-        Color = bc.Color;
-        
-        FontSize = Enum.FontSize.Size8;
-        })
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "+Train Sword";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(2)
+bc = BrickColor.new("Toothpaste")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "+Infinite Spins Working(Only in dungeons)";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(2)
+bc = BrickColor.new("Toothpaste")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "+Enable Total Power of players";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(2)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Well that's all for now, I have to do homework -_-";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
