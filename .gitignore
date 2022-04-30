@@ -215,7 +215,7 @@ TeleportD:addDropdown({
     end
 })
 Conceal1:addButton({
-    title = "Enable Total Power of all players",
+    title = "Enable Total Power of all players(In Testing)",
     callback = function()
         while wait() do
             local players = game.Players:GetPlayers()
