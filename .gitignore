@@ -527,7 +527,7 @@ bc = BrickColor.new("Toothpaste")
 
 game.StarterGui:SetCore("ChatMakeSystemMessage", {
 
-Text = "Well, these are the 2 new features for now, I still want to add a few more things, but you know, the university leaves me without time☠️";
+Text = "[Scripter][Matrixplayer]: Well, these are the 2 new features for now, I still want to add a few more things, but you know, the university leaves me without time☠️";
 
 Font = Enum.Font.Highway;
 
