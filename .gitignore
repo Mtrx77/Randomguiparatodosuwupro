@@ -233,7 +233,7 @@ TeleportD:addDropdown({
 Conceal1:addButton({
     title = "See Total Power of all players",
     callback = function()
-        while wait(2) do
+        while wait() do
             local players = game.Players:GetPlayers()
             for i, v in pairs(players) do
                  for i2, v2 in pairs(v.Character:GetChildren()) do
@@ -277,6 +277,7 @@ Conceal1:addButton({
             end
             end
             end)
+            wait(6)
             end
     end
 })
