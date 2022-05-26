@@ -188,7 +188,7 @@ for i=1,3 do
     end)()
     wait(.5)
 end
-for i=0,2 do
+for i=1,2 do
 wait(15)
 for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
     if i == 1 then
@@ -644,4 +644,5 @@ Color = bc.Color;
 
 FontSize = Enum.FontSize.Size8;
 })
+
 
