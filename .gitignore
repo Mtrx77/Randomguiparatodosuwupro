@@ -191,7 +191,7 @@ for i=1,3 do
     wait(.5)
 end
 for i=1,2 do
-wait(15)
+wait(22)
 for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
     if i == 1 then
         bc = BrickColor.new("Hot pink")
