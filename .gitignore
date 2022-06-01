@@ -238,6 +238,7 @@ for i, v in pairs(plrGui:GetChildren()) do
 						blur:Destroy()
 						ScreenGui:Destroy()
                         Background2:Destroy()
+			wait()
                         repeat
                             wait()
                         until game:IsLoaded()
