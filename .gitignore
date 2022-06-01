@@ -1,945 +1,666 @@
 repeat
     wait()
 until game:IsLoaded()
-local plrGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
-local kick = 0
-local netkey
-local pasable = false
-local x
-local matrixkey = {
-    "MEXC4-XAYTC-BZI1B-D6ELP-UQB7K ","399MH-ZRUYU-96GHA-DNCOE-T5CMF ","58ZJV-XJVD7-50HSE-4PKK7-UT3FT ","WMM21-3LN7I-AP9N7-600HJ-GBK0C ","55KA6-IITET-723U9-GAZG9-CIYH9 ","M3CED-VMMQ4-WG5BL-A6QXK-6U384 ","0OAQV-A3YCA-2SR8V-7YNTW-IT4CR ","VXYIB-LODFX-CHA2I-2RALP-2YPWE ","04UX8-TGXWM-22MU1-VTEVZ-WNBN9 ","4FA70-6Y7DA-NP1UC-OJEAM-51COI ","GG7HQ-7ZWTT-FTRD5-RD5CY-J3Y1V ","LWKIN-A0CIA-WFRT8-T9QOU-INLVT ","Q45TI-5IXWN-UHC20-8FK9Z-JPQ3Q ","KEO5M-5ACNJ-3FO7V-HDYMT-I0KSW ","OEOGX-WZ0VJ-LD6BZ-PMF8K-OI8JR ","7IZRQ-88JSV-4PMA2-XKX33-CXA30 ","9Z37G-NBUAB-6UKMJ-JZ0EU-V9PVC ","26URP-1O4MR-J0KRI-J0B0W-VC5FU ","04NLX-Q8DEA-JNDHL-JVQ9G-7HS28 ","V94CL-YLAI8-U705S-KI3OE-FJ8KI ","C2IYY-JSSO7-W8NHN-3JLJT-DOXPK ","0U7NS-EE3TE-CQ6MD-6WX3B-T8M69 ","3WSGZ-I1I8N-W67VX-5M6PX-HA6ZW ","4E84T-ZFPQO-VDO1I-2IRRO-FXECF ","ZNQ9E-OXT27-I97M5-S7I7V-0YIDT ","JX2C3-LV5BC-DLW09-GL4N0-I78RY ","65KG1-3C4UC-EFEGB-PKXP0-MYVRE ","TD5KZ-NXOXT-1JZIK-AN2ER-XN4X1 ","K76PE-5G03M-KT4FC-Y3R6B-5L5U2 ","OKLZI-Y91U7-0GS5T-UCMWB-ASDM8 ","N3W5F-RR3Z4-D6VH7-Z0YU9-G16G6 ","5JXN2-UWYHT-ZWBA3-KITRI-ILRF2 ","VNI50-S62Q0-AFZAM-PLFW4-ROQXF ","H29SA-BDD5E-EOEL4-7CVR3-O79OL ","D5AV6-WGEN2-I7Q29-T9058-05XXU ","R0YTH-VX352-U82LU-L1L33-BJUPB ","E83DP-S8B04-8O8WK-V4PM0-OVS43 ","0OQZQ-9KYAN-5SJDH-HQJM3-697U0 ","UR8FG-GLGZ5-XAEY9-QYA7R-TXG3T ","HW60V-R05H0-OIJ3V-FJ88W-DIDQ5 ","TLXCE-76GFQ-L5PEE-3OC02-261YS ","QD6C1-5FYPY-IDSUS-KQHMG-L5V2I ","AJ584-SG5Q8-26GDK-2AD2J-D2L9G ","1ASDT-66505-TPZFK-10II2-82RRB ","5F21A-UZHG7-2IZTU-ZW8OR-ZJT3W ","VVLMS-TV8TI-B0R1H-UCDPQ-41KUD ","ZCXRF-ZUXJQ-B0YCY-EJ24R-O4E9J ","O41JN-03T57-BWXAF-7GU6L-HS6XD ","48LMV-0T97I-KQJAQ-UO15N-RYXN1 ","NWXOR-TJC3Y-94EIO-9EHG1-BBUC3 ","KHGPQ-AEK7O-PGXMC-2IKTV-J0N39 ","18GMS-RYW16-B0UU6-KU7SE-3IONE ","DC5T6-NV8L3-NASPO-PSWWZ-5P05H ","JR4KP-P28RM-GS40N-O2BDE-M7I95 ","WQV19-S8Q1Q-VZSKD-KKU4F-IYLDO ","3J5SX-COJC2-ULLL8-6GDJD-KQLO4 ","II8GQ-WEVQO-LTHWT-9WB7Q-OKFND ","3Q7TO-6ICSY-SD1N7-YLXNL-0QKAB ","7OXCB-H59YV-TRBSH-X4Z42-2LOY5 ","HYC47-T0QT9-4BNUR-8000U-9JQ6K ","BOFHX-CFPN0-BSOWD-UE1NP-GY9QH ","VZQJP-W9RGS-JUXR8-N0D29-F7JGZ ","0TL3R-YBDB4-20VO3-EDOT2-J240Q ","3U3SR-B59ZI-7UXBY-9B9TG-WZIN1 ","IQGPB-AFEF1-KA9JO-FAODB-W7L1H ","V1EV1-QMBLQ-CF893-EVPTM-MFN7D ","ZKU26-3XTEV-7T633-Q0HL3-QNN80 ","7SGAX-E6V0P-87BN4-CHMR1-CQUWZ ","A6KXK-DYW1Q-MFOAX-N4U84-ALDL6 ","QX87H-SM6O8-LX0L7-CP815-K8Z56 ","IJPDL-VQONG-QGY18-L9NOE-17N3L ","QPYIM-GVPGK-PTP2F-1O4D1-XKIVM ","BUGDC-A6ENF-79HP6-KATE0-OHZOP ","TLREQ-PKMY2-84Q3C-G7J3G-SKSH4 ","WCE7C-10YXB-J7RFW-O3HJ5-99DQZ ","LY15U-RA20F-SXDMW-C51LP-HOIUP ","VR8F8-OLNML-60DTB-0RU1X-7KJ8B ","WOCKA-4JU7K-DWRK0-UGE2N-BJ88M ","3NBP5-5T5ZK-Q7LVF-R2EKS-IE41G ","A5KHN-ROFIM-BHU7H-8HLQN-8H733 ","F9ZIJ-5CP3Q-3O3K2-POKF8-UI8KG ","YIPXH-P35O8-W5G0T-DW5V2-I5P8R ","YJIFK-0C4AF-681SD-2OCO4-2S1DT ","VU7BT-A0XP7-2WRG1-Q5UA4-HJU7U ","IXG9N-1F4LX-DIJHZ-5BF5J-019JN ","OCTMT-TNH7G-N7IXF-1C3XQ-6A2IZ ","31T83-KH508-CFA0F-GBFJW-PO6ZT ","B1905-URST7-N0UL2-M0GJS-4LXWX ","D9L0G-54H80-DC3SN-R6VR5-DG73D ","4MAST-MPN4M-ZGXJM-PVVQQ-5U1Y8 ","WZ1NL-BTKLU-VQIJB-6H12T-L9JD3 ","ZE981-K6WVD-7IG8J-AMHKR-D84X5 ","U02ER-O4VXN-OKCPW-GTWHQ-A82CH ","IT85A-SM954-UM21W-SCC2K-LRMP7 ","O19JR-O8MSC-MWX0E-QKM4I-L0V5G ","4N7SU-TISZG-4GVLB-T3SA2-M4C6S ","W0T9I-MJMKK-H1PB3-KVJZ8-DPKDM ","EBE6A-JW4QS-RMG33-RDSUY-0T5KB ","A9XJM-BLCQV-93GLW-WFSP1-57N3D ","WQTYX-NSGJU-IMBPH-E4DG9-5GHXU ","A442O-D9C29-072UU-3NAC0-CECH2 ","8WGPL-HJ6QS-LYDXA-CIEU1-9CFDR ","WGY6L-G5T1D-253KS-7ADRQ-VXY9O ","QXQRN-IU11M-UHQ7R-YPECT-L0OX0 ","2A1BZ-BR3ZW-PCFEJ-817QC-IDU1O ","IYRSL-2IKQP-ZXE6J-J2CIX-FJ891 ","A4TT2-IDC8Z-EAI74-JB9F4-EH93Y ","R99UK-F17EI-AQGOK-38NDN-M5SAI ","8K9SB-ZJWPH-KXU6N-42SB0-0ZXHB ","HQ0LO-1UOXE-VTGCN-ZUZ9J-MQ8WD ","5WB8Z-V76WJ-DB4PF-XSKLT-Z1Y58 ","D0Y5R-6W5HH-975ZW-72128-ZBZ7V ","QA9T7-T81TO-LDIHF-0YDFT-X2XKA ","FYPOL-U7Y7S-JCR3W-BEBQM-0BRRW ","6AM21-WLKSM-1XO88-XNJQ8-NJEO3 ","IK25J-T7ZZB-8WCEP-M4S88-9I11W ","JWPIC-CR7UP-F55HZ-ILJX7-GV4L3 ","WH23C-YSAL3-GSS6K-LUO1K-PCPSK ","Y8YT6-8BDJT-SAGPE-MHJ85-YUE0H ","HJHMS-UN43H-W0TJV-EN0UU-3UZ0U ","WMD41-XM7W9-RVL9F-9T3IL-90P10 ","61LWO-317X2-UINW7-T9BWF-2GHKF ","CW7NY-JV9N6-WCFGK-NPPDW-9U7ZZ ","Y4S1P-NJL2T-F2LBV-8R5IL-W7VBO ","GFOEF-JT6SI-6XBYG-AST1U-SFS55 ","VAZ29-MEV27-IESPW-735X3-PBVUM ","YMQ93-PNJ58-XOWP4-5F3K7-JXY9D ","PMSJF-LUWTW-N6V15-BVU7A-8P6RB ","QA75F-C1MZ9-4SLIC-O8J9K-K1DZN ","K4ZU9-14KGJ-ZVFT1-NDR6T-9VXUO ","SH4ZP-WUCBC-S97VH-IQYWX-GMOVI ","7JVDW-Q4ONU-PSTO2-7R93N-NYPOT ","SF1J6-OOSCQ-L14B4-MEIN7-5WRKJ ","L21NM-M0G0A-W5A10-ZPIBT-SLN51 ","SRNLN-ZC5M0-9U1YM-2Q3G8-9MRCD ","4SAH3-N91U6-45J64-RE0ZJ-K0255 ","PJUIW-AOFL4-3H39A-SS96C-UJOB0 ","5RAVU-HGXD0-WLNKZ-WJQEB-DWK1S ","Y002S-OH8YW-9NYPB-5SM3O-N73EF ","GHJDO-V707X-1OY6J-904RK-XL847 ","9DBVA-E3V6F-4AWXH-HXFP5-2KDXH ","I5CLN-F0WVD-93FGR-JS4JA-MURN5 ","AAODY-BIY97-7EK37-D4YMR-6UYM4 ","CPM74-D69WX-4VB65-TGUUU-06WW3 ","CFO60-8R8G9-TG4DI-44GHY-SOWX7 ","D56YF-1DKX0-IEKCT-3FFOS-BL1E9 ","W4225-2FMC9-O0S7B-5KAMO-VDJ8X ","XRYEP-MDRN5-5XSBA-DEM50-BSLPZ ","Z55OB-ICF6G-1N6GJ-76U1S-UCUYW ","2EV5W-ZV2BG-FXG1S-ADIJE-HQDRC ","W2OTC-8TLNC-8CTZ3-LLPXH-5A7EW ","RFDL2-Z2LA8-9EG0E-JK25B-83URF ","Z3LH7-YRGWN-0NB3V-LU8QO-BJPXQ ","B3K9A-6U8EO-LJ9TA-94CEW-XK4P7 ","C0M33-OFNVY-Z93RA-N1DET-65NLS ","62QB7-JERBI-H3DO1-2ZFF0-6Z237 ","WG6KL-EE4LV-MCKZT-WTOIV-264HA ","69MXG-JN8LE-X7TIB-KO7ZB-0GSQV ","NE6YW-UCPYD-VZ0TB-GU1O9-JV9NR ","QWNRY-O9GRU-R9TFX-ST5KN-R3PVJ ","O711F-LF34Q-WOP8S-7IHJQ-X59QY ","CI6LM-O311A-9MO4B-XOP9E-G0QSC ","GFJAA-8NX0U-SMFYE-5R316-3ICGA ","T2DL8-UZH0L-U8YXY-4D6LX-DBBVJ ","80CMV-CNN34-6CLJ7-JPZ2W-4ETQO ","G70EU-QJ2NL-ZF0QG-XX6WG-39XRK ","QKRY1-0HG7V-1BW3M-4VBCE-FN37C ","4DIM8-VAIOS-K5QQA-WPUCK-6SEUA ","M5NHO-M2TRU-GHHDP-DGPDA-Z1494 ","UQLR2-JTAX2-4XRDW-MS147-SCWDU ","93E6L-MXOSJ-56TKK-J1BLP-75GXB ","8RGHJ-1FQ9R-7D9WL-IOZDW-XWAW1 ","4E8VQ-2CRYP-4FNUG-AL3KN-JPSL1 ","CA0Q3-4A5IS-6S2F5-WWHZ5-HJN4T ","1V3ZT-BWB2I-4HA2Y-M4O5S-YCYUN ","J4DEL-EJFLE-05XTC-5D5EZ-8OHF3 ","H34TB-SL6CH-1NH9W-IAORU-CNWR7 ","RJ7HJ-C3T85-3FHAE-V1DG8-M6RGN ","HJSTZ-QV2SL-YSA0M-HPQZY-PJNYE ","IT86X-MDV2L-KWX3E-ZD8J9-WAD15 ","4EQF6-8SNJP-5HTX7-EXGQN-KJRSE ","87XIS-NG98X-Y0A9K-2VIMS-EK8E1 ","FZ3LI-ONN9O-3SCW4-R63FA-ONJ96 ","2T18N-BR6EA-QLA2M-NQWDM-ZQCDU ","DDIOY-YBBWM-WS4H3-U5NE7-STCA7 ","Q44MW-D8WVH-KF3V8-2GZHA-V1C1C ","QG8UT-1P6J0-VXVED-8XOLA-XQSWN ","3NF49-6SCZN-7EGHX-IKGIZ-1JVP4 ","UIL9L-C1WPC-CJ98I-0E2KF-3CIKY ","J40C2-00X8X-YV0VG-I0EM3-91DMV ","B8X69-1CU30-2BT6A-FOA63-0ZVPF ","CL5N6-S6YIT-AK9F6-38VNU-N1POZ ","NAU57-2B077-QVWBE-1SUCX-7F6D1 ","9L61B-XEWLL-6O3T6-AUIB4-9QN8V ","QQCYD-DKI4N-6EEJJ-0IXIQ-HE4MJ ","L6CND-2AUOH-NJ3UK-8FQUQ-X0GZQ ","FI5CW-LDQPQ-2XXTC-G6MC2-75AL0 ","OQ75J-TCOST-32GWM-Y7M9Q-812V9 ","73Y8S-LZ9EB-13U19-WFYDC-WVC6R ","YB5IL-RO2TH-F98ZE-3N2RW-ZIPB2 ","I06WE-ET3NN-1X53C-OOW20-SIDO9 ","4D62Y-TSO8P-LPI49-D4C5W-UJ13J ","LEV2D-NPZ3A-VO7PF-ESXF5-T5AUB ","1JXXS-CXX03-P4QRE-3M09B-KB56F ","D3MWP-01RPA-FFRNT-7VDC9-GIP7Z ","KEPID-KWN7Q-SDDCU-MU142-9874A ","OMZ6V-BU2RE-40O54-CDTYQ-ARBSN ","C03WE-EKN8H-7HNX9-83SJK-NO0V0 ","Z9U0Z-9ZAP9-H89ZP-7ZHI0-6SO38 ","4170V-DRHLX-HGRS0-1C58G-IVQRR ","SAFI4-99Y48-POUZZ-807ZU-FPLNP ","BWBHP-8KU7E-4GVKB-IRKLX-TVIF2 ","LPMNM-15J1D-29IC3-UKJ0V-OLESA ","2VG07-KTWFH-7PTG1-3MN7Q-QL3BA ","LO1UG-XWRO7-ZE2OE-M8MH0-FGVK4 ","T7E9C-ZHOFZ-FXQ6F-RBMOT-8GY74 ","V6ACY-WYCD1-NNXWH-W6C0J-XLKVN ","6KBC0-W411R-O6T45-YR8WF-D60TF ","O1ELU-6GZ67-L21X7-7Y2BF-JXA9O ","ZIIXO-LJ885-TKPP6-0JMPX-8Z42W ","QNSLA-TEW5Y-FIRS5-S2RQR-MNCLB ","1LY3F-AVQNC-LCMW4-HO77G-WS48Q ","LYTY5-3M8MW-HOTNM-Q5AM7-V051T ","KE0OK-8HKKG-VRPJD-S6T02-BPSMX ","STWAL-ZQE0C-ZRX5R-KHIPA-M3ZHA ","X6KWC-G2YFX-6MS3O-B68BD-Y6UXE ","IS1M6-4C3YD-TPWZ9-XY8CI-GJVL6 ","7K8F5-5FJIH-3LTTU-FNP3H-ANR21 ","EKZYE-9AHQO-U2IUE-VLXX9-WQL6Y ","CL8PF-SWBMU-FR0A2-616ZJ-EL0P6 ","34WVI-I9C3Z-7AVB0-3GBV0-65EK6 ","K5L13-11W5F-HYPNW-JSCM7-ZJK2M ","PRAXU-TV97P-71MX9-6DSS5-Y9VPD ","5L4EB-PZ9ZE-4EZ1C-LV35T-T5A7B ","ZV9FJ-BOHEL-BEMSQ-APN2C-P5V23 ","HP4ZF-UBQVF-12LDG-K4KWP-QD3OS ","PFKI4-RQIAV-3EZZ8-99U4N-RHDEE ","SQCPQ-JNB89-S8PP9-9RB7R-2DV52 ","SRB7D-IBR7F-Z9MZH-KKMYH-VXF3G ","N5G61-S2HVS-DA9JL-ETTCO-YBVA9 ","TDLH5-6YEJC-XSGKE-ZDIFK-2E7JM ","ODC2K-WH4FJ-CWWZZ-VUTZB-1ZVCB ","ASKUO-782DK-IF5JV-1ABPG-QTZJC ","YQ35O-CS2K0-0VHVH-6XAPZ-QY13I ","YU7G6-U6Z3I-WIKOT-LHCWS-XJTHS ","0YSX2-56OVX-7E6MY-510YY-QJAG6 ","ZNBPD-9IUCE-9P34T-DHJPH-RW3GI ","S10AS-PO7JL-FCZLM-3M9X1-GQGRQ ","ZUWRT-6LD6G-8T6CC-TUNR3-6ZS64 ","9HT03-AQV64-NQBIF-E7SEQ-3MZYP ","1HGIH-LW7RP-SPS4W-BMR51-RI6T0 ","1MNSU-CQ609-C3EJL-6328G-M9DE5 ","ZW5NQ-SNWJD-9P4W8-MCBJF-VPNMZ ","K44NY-RSO3N-8VQRI-BSJ5X-JFRTS ","H7XN1-KOYDR-K49WA-34IMI-INFP0 ","BMA8A-HCF4I-H14ZR-8ERQN-81NSA ","LX1OV-OY2P9-XOZWF-RITYN-YCWDM ","BM7K0-5KT83-4K9KO-RSDRE-X4WVX ","6323V-0MQ8T-Y80WK-FBSZC-APNVP ","STXE2-7OCE7-IVIZ9-F8R6Y-JKOBA ","7GID7-HWSZ1-YAV2K-ZIMPG-SSHTH ","TCAWD-KM5S7-9VJUZ-QPTSY-80WAL ","Q2NW2-PQ4LY-C4RX2-VGMJS-PFZWV ","FBXRF-LU7DH-C33K3-HJZMA-QVTRT ","7BGTZ-DYEBO-VMLHX-Q0H2M-6F1JN ","X8DA9-IXG3L-UPKB6-ZW143-ZP8P6 ","Q6MVB-34I3H-BPMLH-YD5ST-DA4YH ","XIGH4-8PB0S-NEYTR-AKBAT-V3XT1 ","XPYYB-S9NRA-TL07S-U6GST-XS67X ","FAZZ2-JCWG7-ITL6W-AON6I-690UI ","K6GAD-GL83T-SKQT3-AYP32-RQ7JM ","XOVJD-MSEAW-6MFOJ-0P5LO-PQRCR ","IQYCY-S957Z-R5KS0-2YDHV-51NMH ","SP8OW-UUQXX-OAQWG-3EVKH-OOHBZ ","8F96C-7OIXY-01CDQ-T4HZY-WRVVK ","NN590-3WXEC-4QFJD-QQXE0-CULPG ","PTXYR-WD19W-CU9KB-MZ740-Y9EB3 ","W903O-AFC68-91X0Z-87IIU-WCJZ0 ","NQD63-EUQJ3-RVQD8-MXODZ-3WRHT ","143K5-B6R2O-EA2IY-N150L-EI4KC ","ZZJ2O-9XO09-ZNR50-I1M5N-8Y88S ","X4GSX-FXD0L-0A8HZ-OH61C-1WP00 ","4NHBS-QE5SZ-5VFFQ-UZGCL-1G93D ","TCI17-0YMCQ-M9EZY-TOQ01-8P5KL ","J7CWP-DQIAG-NTMFE-5ROEI-FZ4VT ","C3DET-XXX9I-ZLT9P-O549J-N0YYB ","XBSKL-Z64TT-FROK7-DYMHP-FUWTK ","ZR4HF-25E49-GM60H-43BPN-SVO2D ","TF4K2-X2441-AEXT2-V4IWX-IV4UK ","YLKNA-STW60-28GKX-FPHWU-1AR9N ","EY17P-WOLQI-09BTI-MU4AS-W1GXE ","ELAYJ-NT2QC-MXPAR-NQG7G-DJRCT ","SZ7FK-QUUNC-I7VEX-V3O2F-763KB ","8J2GD-4XJ9O-YVET3-LYPBU-7641R ","WHV20-0XJXW-GM3NZ-9NI8R-UBLDC ","J0G0H-NNJ6N-61YUC-K7V46-8IPKL ","NPN1M-LAXZW-SCFQR-NY1BU-8XXN7 ","YMD1E-9U83F-ZKLC7-2MQDS-3T0IX ","YZ5KC-6SO24-J7ID3-9I0QH-C550V ",
+if game.Players.LocalPlayer.UserId ~= 1617220336 and game.Players.LocalPlayer.UserId ~= 292497312 and game.Players.LocalPlayer.UserId ~= 1666771059
+and game.Players.LocalPlayer.UserId ~= 1739491684 and game.Players.LocalPlayer.UserId ~= 1517621440 and game.Players.LocalPlayer.UserId ~= 2539181650  then
+-- Variables
+local stats = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.StatModuleClient)
+local playerl = {}
+local tp
+local random = math.random(1,2)
+local l
+local mob1
+local mobP
+local client = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.SpecialsClient)
+local VirtualInputManager = game:GetService('VirtualInputManager')
+local died = false
+local npcdied = false
+--algunos ciclos
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v ~= game.Players.LocalPlayer then 
+        table.insert(playerl,v.Name)
+    end
+    end
+    game.Players.PlayerAdded:Connect(function(player)
+        table.insert(playerl,player.Name)
+    end)
+    game.Players.PlayerRemoving:Connect(function(player)
+     for i=0,50 do
+     if i == table.find(playerl,player.Name) then
+        table.remove(playerl,i)
+     end
+    end
+    end)
+-- // Initialising the UI
+local Venyx = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venyx-UI-Library/main/source2.lua"))()
+local UI = Venyx.new({
+    title = "NAM Hub | Matrixxx#9999 | JAS#0027"
+})
 
-
+local Themes = {
+    Background = Color3.fromRGB(14, 13, 13),
+    Glow = Color3.fromRGB(0, 0, 0),
+    Accent = Color3.fromRGB(10, 10, 10),
+    LightContrast = Color3.fromRGB(20, 20, 20),
+    DarkContrast = Color3.fromRGB(14, 14, 14),  
+    TextColor = Color3.fromRGB(0, 247, 255)
 }
-if not game.Players.LocalPlayer.PlayerGui.Intro:FindFirstChild("Folder") then
-for i, v in pairs(plrGui:GetChildren()) do
-    Instance.new("Folder").Parent = game.Players.LocalPlayer.PlayerGui.Intro
-    if v:IsA("ScreenGui") then
-        if v.Enabled == true then
-            if v.Name == "Chat" or v.Name == "BubbleChat" or v.Name == "Freecam" then
-            else
-                local Background = Instance.new("Frame")
-                Background.Name = "Background"
-                Background.Parent = v
-                Background.AnchorPoint = Vector2.new(0.5,0.5)
 
-                Background.Size = UDim2.new(0, 800, 0, 200)
-                Background.Position = UDim2.new(0.5,0,0.5,0)
-                Background.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
-                local UiCorner = Instance.new("UICorner")
-                UiCorner.Parent = Background
-                local TextLabel33 = Instance.new("TextLabel",Background2)
-                TextLabel33.Parent = Background
-                TextLabel33.Name = "TextLabel1"
-                TextLabel33.AnchorPoint = Vector2.new(0.5,0.5)
-                TextLabel33.Size = UDim2.new(0, 255,0, 57)
-                TextLabel33.Position = UDim2.new(0.5, 0,0.2, 0)
-                TextLabel33.Font = Enum.Font.SourceSansBold
-                TextLabel33.TextSize = 34
-                TextLabel33.Text = "NAM HUB Key System"
-                TextLabel33.TextColor = BrickColor.new("Toothpaste")
-                TextLabel33.BackgroundTransparency = 1
-                local PlayerGui = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-                PlayerGui:SetTopbarTransparency(0)
-                local screen = Instance.new("ScreenGui")
-                screen.Parent = Background
-                local soulOd = Instance.new('ImageLabel', screen)
-                soulOd.Image = ''
-                soulOd.ZIndex = 1
-                soulOd.BackgroundTransparency = 1
-                soulOd.BackgroundColor3 = Color3.new(.4,.4,.4)
-                soulOd.Size = UDim2.new(1,0,1,0)
-                local frame = Instance.new('Frame', screen)
-                frame.Size = UDim2.new(.355,0,0.1,-40)
-                frame.Position = UDim2.new(0.5, -340,0.46, 13)
-                frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                frame.BackgroundTransparency = -1
-                local loadingBar = Instance.new('Frame', frame)
-                loadingBar.Size = UDim2.new(0,0,1,0)
-                loadingBar.ZIndex = 2
-                loadingBar.BackgroundTransparency = -1
-                loadingBar.BackgroundColor3 = Color3.new(0.007843, 1, 0.835294)
-                local soulText = Instance.new('ImageLabel', screen)
-                soulText.Size = UDim2.new(1,0,1,0)
-                soulText.Position = UDim2.new(0,0,-0.08,0)
-                soulText.BackgroundTransparency = 1
-                soulText.ZIndex = 3
-                soulText.Image = ''
-                local newText = Instance.new('TextLabel', frame)
-                function all_trim(s)
-                    return s:match"^%s*(.*)":match"(.-)%s*$"
-                  end
-                  function toint(n)
-                    local s = tostring(n)
-                    local i, j = s:find('%.')
-                    if i then
-                        return tonumber(s:sub(1, i-1))
-                    else
-                        return n
-                    end
-                end
-                  for j, va in pairs(matrixkey) do
-                    x = toint(j/5.97)
-                    newText.FontSize = Enum.FontSize.Size18
-                    newText.Size = UDim2.new(1,0,1,0)
-                    newText.ZIndex = 3
-                    newText.TextColor3 = Color3.fromRGB(15, 15, 15)
-                    newText.BackgroundTransparency = 1
-                    if x >= 100 then
-                        newText.TextColor3 = Color3.fromRGB(29, 126, 0)
-                        newText.Text = 'Loaded'
-                    else
-                        newText.Text = x .. "%"
-                    end
-                    local loadingStruc = x/100
-                    loadingBar.Size = UDim2.new(loadingStruc, 0, 1, 0)
-                    if  j < 300 then
-                        table.insert(matrixkey,all_trim(va))
-                    end
-                    wait()
-                    if x >= 100 then
-                        local i=0,100
-                        newText.TextColor3 = Color3.fromRGB(29, 126, 0)
-                        newText.Text = 'Loaded'
-                        frame.BackgroundColor3 = Color3.new(0.007843, 1, 0.835294)
-                        wait(.6)
-                    end
-                end
-                for i=0,100 do
-                    newText.TextTransparency = i/100
-                    if i > 80 then
-                        loadingBar.BackgroundTransparency = i/100
-                        wait()
-                    end
-                end
-                Background:Destroy()
-                screen:Destroy()
-                local Background2 = Instance.new("Frame")
-                Background2.Name = "Background2"
-                Background2.Parent = v
-                warn("Key System Loaded")
-                Background2.AnchorPoint = Vector2.new(0.5,0.5)
-                Background2.Size = UDim2.new(0, 550,0, 500)
-                Background2.Position = UDim2.new(0.5,0,0.5,0)
-                Background2.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+local Training1 = UI:addPage({
+    title = "Training",
+    icon = 9574083105
+})
+local Spins = UI:addPage({
+    title = "Infinite Spins",
+    icon = 9573898432
+})
+local Teleport1 = UI:addPage({
+    title = "Teleport",
+    icon = 9573858567 
+})
+local Players1 = UI:addPage({
+    title = "Players",
+    icon = 9726996129
+})
+local Farm = UI:addPage({
+    title = "AutoFarm",
+    icon = 9573984012
+})
 
-                local UiCorner = Instance.new("UICorner",Background2)
-                
-                local TextBox = Instance.new("TextBox",Background2)
-                TextBox.Name = "KeyBox"
-                TextBox.AnchorPoint = Vector2.new(0.5,0.5)
-
-                TextBox.Size = UDim2.new(0, 255,0, 27)
-                TextBox.Position = UDim2.new(0.5, 0,0.2, 200)
-                TextBox.Font = Enum.Font.SourceSans
-                TextBox.TextSize = 19
-                TextBox.TextColor = BrickColor.new("Blue")
-                TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-                TextBox.BorderSizePixel = 0
-                TextBox.Text = "Introduce the Key newbie!!"
-				local TextLabel1 = Instance.new("TextLabel",Background2)
-                TextLabel1.Name = "TextLabel1"
-                TextLabel1.AnchorPoint = Vector2.new(0.5,0.5)
-
-                TextLabel1.Size = UDim2.new(0, 255,0, 57)
-                TextLabel1.Position = UDim2.new(0.5, 0,0.2, 0)
-                TextLabel1.Font = Enum.Font.SourceSansBold
-                TextLabel1.TextSize = 34
-                TextLabel1.Text = "NAM HUB"
-                TextLabel1.TextColor = BrickColor.new("Toothpaste")
-                TextLabel1.BackgroundTransparency = 1
-				
-				local blur = Instance.new("BlurEffect", game.Lighting)
-				blur.Size = 0
-				local ScreenGui = Instance.new("ScreenGui")
-				local ImageLabel = Instance.new("ImageLabel")
-				ScreenGui.Parent = game.CoreGui
-				ImageLabel.Parent = ScreenGui
-				ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-				ImageLabel.BackgroundTransparency = 1
-				ImageLabel.Position = UDim2.new(0.5, -(170 / 2), 0.5, -(263 / 2))
-				ImageLabel.Rotation = 0
-				ImageLabel.Size = UDim2.new(0, 170,0, 150)
-				ImageLabel.Image = "rbxassetid://9726996129"
-				ImageLabel.ImageTransparency = 1
-				 
-				for i = 1, 50, 2 do
-					blur.Size = i
-					ImageLabel.ImageTransparency = ImageLabel.ImageTransparency - 0.1
-					wait()
-				end
-				local clipboard = Instance.new("TextButton",Background2)
-                clipboard.Name = "clipboard"
-				clipboard.AnchorPoint = Vector2.new(0.5,0.5)
-                clipboard.Size = UDim2.new(0, 102,0, 35)
-                clipboard.Position = UDim2.new(0.5, 0,0.8, 0)
-                clipboard.Font = Enum.Font.SourceSansBold
-                clipboard.TextSize = 28
-                clipboard.Text = "Get Key"
-                clipboard.TextColor = BrickColor.new("Toothpaste")
-                clipboard.BackgroundColor3 = Color3.fromRGB(27, 26, 26)
-                clipboard.MouseButton1Click:Connect(function()
-					setclipboard("https://link-target.net/457679/exploit-afs")
-					game.StarterGui:SetCore("SendNotification",{Title = "Link Copied", Text = "Link Copied to Clipboard", Duration = 15})
-					bc = BrickColor.new("New Yeller")
-
-					game.StarterGui:SetCore("ChatMakeSystemMessage", {
-					
-					Text = "System: Link Copied to Clipboard";
-					
-					Font = Enum.Font.Highway;
-					
-					Color = bc.Color;
-					
-					FontSize = Enum.FontSize.Size8;
-					})
-				end)
-                local YesButton = Instance.new("TextButton",Background2)
-                YesButton.Name = "YesButton"
-                YesButton.AnchorPoint = Vector2.new(0.5,0.5)
-
-                YesButton.Size = UDim2.new(0, 102,0, 35)
-                YesButton.Position = UDim2.new(0.5, 0,0.7, 0)
-                YesButton.Font = Enum.Font.SourceSansBold
-                YesButton.TextSize = 28
-                YesButton.Text = "Submit"
-                YesButton.TextColor = BrickColor.new("Toothpaste")
-                YesButton.BackgroundColor3 = Color3.fromRGB(27, 26, 26)
-
-                YesButton.MouseButton1Click:Connect(function()
-  
-                    
-                    TextBox.PlaceholderText = "Introduce the Key newbie"
-                    TextBox.Text = tostring(TextBox.Text)
-                    for key, value in pairs(matrixkey) do
-                        if value == TextBox.Text then
-                            pasable = true
-                        end
-                    end
-                    if pasable == true then
-						bc = BrickColor.new("Lime green")
-
-						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-						
-						Text = "System: Key Correct ";
-						
-						Font = Enum.Font.Highway;
-						
-						Color = bc.Color;
-						
-						FontSize = Enum.FontSize.Size8;
-						})
-						TextBox.PlaceholderText = "The Key is Correct ;D" 
-                        for i = 1, 50, 2 do
-							blur.Size = 50 - i
-							ImageLabel.ImageTransparency = ImageLabel.ImageTransparency + 0.1
-							wait()
-						end
-						blur:Destroy()
-						ScreenGui:Destroy()
-                        Background2:Destroy()
-			wait()
-                        repeat
-                            wait()
-                        until game:IsLoaded()
-                        if game.Players.LocalPlayer.UserId ~= 1617220336 and game.Players.LocalPlayer.UserId ~= 292497312 and game.Players.LocalPlayer.UserId ~= 1666771059
-                        and game.Players.LocalPlayer.UserId ~= 1739491684 and game.Players.LocalPlayer.UserId ~= 1517621440 and game.Players.LocalPlayer.UserId ~= 2539181650  then
-                        -- Variables
-                        local stats = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.StatModuleClient)
-                        local playerl = {}
-                        local tp
-                        local random = math.random(1,2)
-                        local l
-                        local mob1
-                        local mobP
-                        local client = require(game.Players.LocalPlayer.PlayerGui.Main.MainClient.SpecialsClient)
-                        local VirtualInputManager = game:GetService('VirtualInputManager')
-                        local died = false
-                        local npcdied = false
-                        warn("NAM HUB Loading")
-                        --algunos ciclos
-                        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
-                            if v ~= game.Players.LocalPlayer then 
-                                table.insert(playerl,v.Name)
-                            end
-                            end
-                            game.Players.PlayerAdded:Connect(function(player)
-                                table.insert(playerl,player.Name)
-                            end)
-                            game.Players.PlayerRemoving:Connect(function(player)
-                             for i=0,50 do
-                             if i == table.find(playerl,player.Name) then
-                                table.remove(playerl,i)
-                             end
-                            end
-                            end)
-                        -- // Initialising the UI
-                        local Venyx = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venyx-UI-Library/main/source2.lua"))()
-                        local UI = Venyx.new({
-                            title = "NAM Hub | Matrixxx#9999 | JAS#0027"
-                        })
-                        
-                        local Themes = {
-                            Background = Color3.fromRGB(14, 13, 13),
-                            Glow = Color3.fromRGB(0, 0, 0),
-                            Accent = Color3.fromRGB(10, 10, 10),
-                            LightContrast = Color3.fromRGB(20, 20, 20),
-                            DarkContrast = Color3.fromRGB(14, 14, 14),  
-                            TextColor = Color3.fromRGB(0, 247, 255)
-                        }
-                        
-                        local Training1 = UI:addPage({
-                            title = "Training",
-                            icon = 9574083105
-                        })
-                        local Spins = UI:addPage({
-                            title = "Infinite Spins",
-                            icon = 9573898432
-                        })
-                        local Teleport1 = UI:addPage({
-                            title = "Teleport",
-                            icon = 9573858567 
-                        })
-                        local Players1 = UI:addPage({
-                            title = "Players",
-                            icon = 9726996129
-                        })
-                        local Farm = UI:addPage({
-                            title = "AutoFarm",
-                            icon = 9573984012
-                        })
-                        
-                        local TrainStrength = Training1:addSection({
-                            title = "Strength"
-                        })
-                        local TrainChakra = Training1:addSection({
-                            title = "Chakra"
-                        })
-                        local TrainDurability = Training1:addSection({
-                            title = "Durability"
-                        })
-                        local TrainSword = Training1:addSection({
-                            title = "Sword"
-                        })
-                        local InfiniteSpins = Spins:addSection({
-                            title = "Infinite Spins"
-                        })
-                        local TeleportP = Teleport1:addSection({
-                            title = "Teleport to Players"
-                        })
-                        local TeleportD = Teleport1:addSection({
-                            title = "Teleport to Dimensions"
-                        })
-                        local Conceal1 = Players1:addSection({
-                            title = "Total Power"
-                        })
-                        local FarmMobs1 = Farm:addSection({
-                            title = "AutoFarm Mobs Dimension 1"
-                        })
-                        local FarmMobs2 = Farm:addSection({
-                            title = "AutoFarm Mobs Dimension 2"
-                        })
-                        wait(1)
-                        TrainStrength:addToggle({
-                            title = "Train",
-                            callback = function(Strength)
-                                getgenv().toggle1 = Strength
-                                while wait() do
-                                    if getgenv().toggle1 == true then
-                                     wait()
-                                     stats.SendToServer("Strength")
-                                    end
-                                end
-                            end
-                        })
-                        TrainChakra:addToggle({
-                            title = "Train",
-                            callback = function(Chakra)
-                                getgenv().toggle2 = Chakra
-                                while wait() do
-                                    if getgenv().toggle2 == true then
-                                        task.spawn(function()
-                                            stats.SendToServer("Chakra")
-                                        end)
-                                    end
-                                    end
-                            end
-                        })
-                        TrainChakra:addButton({
-                            title = "Train Chakra OP",
-                            callback = function()
-                                game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It can take a minute or a little more to start training", Duration = 15})
-                                coroutine.wrap(function()
-                                    while wait(60) do
-                                    for i=0, 14000 do
-                                        task.spawn(function()
-                                            stats.SendToServer("Chakra")
-                                        end)
-                                    end
-                                end
-                                end)()
-                            end
-                        })
-                        TrainChakra:addButton({
-                            title = "Chakra Ultimate(In Testing)",
-                            callback = function()
-                                game.StarterGui:SetCore("SendNotification",{Title = "HEY", Text = "Wait a minute after executing the script, if it doesn't work, change the server and try again", Duration = 5})
-                                wait(5)
-                                game.StarterGui:SetCore("SendNotification",{Title = "Low chance", Text = "Just to remind you that there is little chance that it will work", Duration = 5})
-                                for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
-                                    if i == 1 then
-                                        bc = BrickColor.new("Hot pink")
-                                
-                                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                                        
-                                        Text = "System: Your current chakra is: " .. v;
-                                        
-                                        Font = Enum.Font.Highway;
-                                        
-                                        Color = bc.Color;
-                                        
-                                        FontSize = Enum.FontSize.Size8;
-                                        })
-                                    end
-                                end
-                                local Player = game.Players.LocalPlayer
-                        local Character = Player.Character
-                        local Humanoid = Character.Humanoid
-                        for i=1,2 do
-                        coroutine.wrap(function()
-                        coroutine.wrap(function()
-                            for i = 1,5000 do 
-                              task.spawn(function()
-                                stats.SendToServer("Chakra")
-                              end)
-                            end
-                          end)()
-                        end)()
-                        wait(.5)
-                        end
-                        wait(1)
-                        Humanoid.Health = 0
-                        wait(1)
-                        for i=1,3 do
-                            coroutine.wrap(function()
-                            coroutine.wrap(function()
-                                for i = 1,5000 do 
-                                  task.spawn(function()
-                                    stats.SendToServer("Chakra")
-                                  end)
-                                end
-                              end)()
-                            end)()
-                            wait(.5)
-                        end
-                        for i=1,2 do
-                        wait(15)
-                        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
-                            if i == 1 then
-                                bc = BrickColor.new("Hot pink")
-                        
-                                game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                                
-                                Text = "System: Your current chakra is: " .. v;
-                                
-                                Font = Enum.Font.Highway;
-                                
-                                Color = bc.Color;
-                                
-                                FontSize = Enum.FontSize.Size8;
-                                })
-                            end
-                        end
-                        end
-                            end
-                        })
-                        TrainDurability:addToggle({
-                            title = "Train",
-                            callback = function(Durability)
-                                getgenv().toggle3 = Durability
-                                while wait() do
-                                    if getgenv().toggle3 == true then
-                                     stats.SendToServer("Durability")
-                                    end
-                                end
-                            end
-                        })
-                        TrainSword:addToggle({
-                            title = "Train",
-                            callback = function(Sword)
-                                getgenv().toggle4 = Sword
-                                if getgenv().toggle4 == true then game.StarterGui:SetCore("SendNotification",{Title = "Hey", Text = "Remember to equip the sword", Duration = 7})
-                                while wait() do
-                                    if getgenv().toggle4 == true then
-                                     stats.SendToServer("Sword")
-                                    end
-                                end
-                            end
-                        end
-                        })
-                        
-                        InfiniteSpins:addButton({
-                            title = "Start Spining",
-                            callback = function()
-                                if game.PlaceId == 7220986579 or game.PlaceId == 7220975160 then 
-                                    for i = 0,100 do
-                                        task.spawn(function()
-                                            while wait() do
-                                            game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
-                                            game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
-                                            end
-                                        end)
-                                    end 
-                                else 
-                                    game.StarterGui:SetCore("SendNotification",{Title = "Use it in dungeon", Text = "Only works in dungeons", Duration = 5})
-                                    wait(5)
-                                    game.StarterGui:SetCore("SendNotification",{Title = "Teleporting", Text = "You will be teleported to a dungeon", Duration = 5})
-                                    wait(5)
-                                    if random == 1 then game:GetService("TeleportService"):Teleport(7220975160)
-                                        elseif random == 2  then game:GetService("TeleportService"):Teleport(7220986579)
-                                        end
-                                    
-                            end
-                            end
-                        })
-                        TeleportP:addDropdown({
-                            title = "Players",
-                            list = playerl,
-                            callback = function(jugador)
-                                for _, value in pairs(game:GetService("Players"):GetPlayers()) do
-                                    if value.Name == jugador then
-                                       tp = value
-                                    end
-                                end
-                            end
-                        })
-                        TeleportP:addToggle({
-                            title = "Teleport To Player",
-                            callback = function(teleport)
-                                getgenv().toggle5 = teleport
-                                while wait() do
-                                    if getgenv().toggle5 == true then
-                                        for i2, v2 in pairs(tp.Character:GetChildren()) do
-                                            if v2.Name == "HumanoidRootPart" then
-                                               l = v2.Position
-                                            end
-                                        end
-                                        task.spawn(function() 
-                                            local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                                            local location = CFrame.new(l)
-                                            local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                                            pl.CFrame = location
-                                            end)
-                                    end
-                                end
-                            end
-                        })
-                        TeleportD:addDropdown({
-                            title = "Dimensions",
-                            list = {"Dimension 1","Dimension 2","Dimension 3","Dimension 4","Dimension 5","Dimension 6",},
-                            callback = function(dimension)
-                                if dimension == "Dimension 1" then game:GetService("TeleportService"):Teleport(4042427666)
-                                elseif dimension == "Dimension 2"  then game:GetService("TeleportService"):Teleport(5113678354) 
-                                elseif dimension == "Dimension 3"  then game:GetService("TeleportService"):Teleport(5113680396) 
-                                elseif dimension == "Dimension 4"  then game:GetService("TeleportService"):Teleport(5445525505) 
-                                elseif dimension == "Dimension 5"  then game:GetService("TeleportService"):Teleport(6479720355) 
-                                elseif dimension == "Dimension 6"  then game:GetService("TeleportService"):Teleport(9386500519) 
-                                end
-                            end
-                        })
-                        Conceal1:addButton({
-                            title = "See Total Power of all players",
-                            callback = function()
-                                while wait() do
-                                    local players = game.Players:GetPlayers()
-                                    for i, v in pairs(players) do
-                                         for i2, v2 in pairs(v.Character:GetChildren()) do
-                                            if v2.Name == "HumanoidRootPart" then
-                                                for i3, v3 in pairs(v2:GetChildren()) do
-                                                    if v3.Name == "TotalPower" then
-                                                        if v3.Enabled == false then
-                                                            v3.Enabled = true
-                                                            for i4, v4 in pairs(v3:GetChildren()) do
-                                                                if v4.Name == "Num" then
-                                                                    v4.TextColor3 = Color3.new(0, 0.717647, 1) 
-                                                                end
-                                                            end
-                                                        end
-                                                    end
-                                                end
-                                            end
-                                        end
-                                    end
-                                    game.Players.PlayerAdded:Connect(function(player)
-                                        wait(7)
-                                        while wait(2) do
-                                       local players = game.Players:GetPlayers()
-                                    for i, v in pairs(players) do
-                                        for i2, v2 in pairs(v.Character:GetChildren()) do
-                                           if v2.Name == "HumanoidRootPart" then
-                                               for i3, v3 in pairs(v2:GetChildren()) do
-                                                   if v3.Name == "TotalPower" then
-                                                       if v3.Enabled == false then
-                                                           v3.Enabled = true
-                                                           for i4, v4 in pairs(v3:GetChildren()) do
-                                                            if v4.Name == "Num" then
-                                                                v4.TextColor3 = Color3.new(0, 0.717647, 1) 
-                                                            end
-                                                        end
-                                                       end
-                                                   end
-                                               end
-                                           end
-                                       end
-                                    end
-                                    end
-                                    end)
-                                    wait(6)
-                                    end
-                            end
-                        })
-                        FarmMobs1:addDropdown({
-                            title = "Mobs",
-                            list = {"Weak Ninja","Masked Ninja","Strong Ninja","Bain","Marado","Small Crystal","Large Crystal",},
-                            callback = function(mob)
-                                mob1 = mob
-                            end
-                        })
-                        FarmMobs1:addToggle({
-                            title = "Farm",
-                            callback = function(AutoFarm)
-                                getgenv().toggle6 = AutoFarm
-                                if getgenv().toggle6 == true then
-                                if game.PlaceId == 4042427666 then
-                                while wait() do
-                                    if getgenv().toggle6 == true then
-                                        if died == true then
-                                            wait(6)
-                                        end
-                                        for i, v in pairs(game:GetService("Workspace").Scriptable.SpawnedMobs:GetChildren()) do
-                                            if v.Name == mob1  then
-                                                for i2, v2 in pairs(v:GetChildren()) do
-                                                    if  v2.Name == "Hitpart" then
-                                                        mobP = v2
-                                                    end
-                                                end
-                                            end
-                                        end
-                                         if npcdied == false or died == true then
-                                        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
-                                            if v == "67" or v == "56" or v == "55" 
-                                            or v == "43" or v == "27" or v == "23"
-                                            or v == "21" or v == "13" or v == "9"   then
-                                                VirtualInputManager:SendKeyEvent(true, i, false, game)
-                                                wait()
-                                                VirtualInputManager:SendKeyEvent(false, i, false, game)
-                                            end
-                                        end
-                                            end
-                                            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
-                                                died = true
-                                            end) 
-                                            died = false          
-                                            game:GetService("Workspace").Scriptable.SpawnedMobs.ChildRemoved:Connect(function(mb)
-                                                    if mb == mobP.Parent then
-                                                        npcdied = true
-                                                    end
-                                             end)
-                                            npcdied = false
-                                            local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                                            local location = CFrame.new(mobP.Position)
-                                            local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                                            pl.CFrame = location
-                                            wait(2)
-                                            repeat
-                                                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                                                local location = CFrame.new(mobP.Position)
-                                                local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                                                pl.CFrame = location
-                                                for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
-                                                    if v == "67" or v == "56" or v == "55" 
-                                                    or v == "43" or v == "27" or v == "23"
-                                                    or v == "21" or v == "13" or v == "9" or v == "17"   then
-                                                        else
-                                                            VirtualInputManager:SendKeyEvent(true, i, false, game)
-                                                            wait()
-                                                            VirtualInputManager:SendKeyEvent(false, i, false, game)
-                                                    end
-                                                    end 
-                             
-                                                until died == true or  getgenv().toggle6 == false or  npcdied == true     
-                                    end
-                                end
-                            else game.StarterGui:SetCore("SendNotification",{Title = "Bruh", Text = "You're not in dimension 1, are you stupid or what?", Duration = 5}) 
-                            end
-                            end
-                        end
-                        })
-                        FarmMobs2:addDropdown({
-                            title = "Mobs",
-                            list = {"Seed","Kappa","Jinu Squad","Mito","Boo","Small Namekian Crystal",},
-                            callback = function(mob)
-                                mob1 = mob
-                            end
-                        })
-                        FarmMobs2:addToggle({
-                            title = "Farm",
-                            callback = function(AutoFarm)
-                                getgenv().toggle7 = AutoFarm
-                                if getgenv().toggle7 == true then
-                                if game.PlaceId == 5113678354 then
-                                while wait() do
-                                    if getgenv().toggle7 == true then
-                                        if died == true then
-                                            wait(6)
-                                        end
-                                        for i, v in pairs(game:GetService("Workspace").Scriptable.SpawnedMobs:GetChildren()) do
-                                            if v.Name == mob1  then
-                                                for i2, v2 in pairs(v:GetChildren()) do
-                                                    if  v2.Name == "Hitpart" then
-                                                        mobP = v2
-                                                    end
-                                                end
-                                            end
-                                        end
-                                         if npcdied == false or died == true then
-                                        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
-                                            if v == "67" or v == "56" or v == "55" 
-                                            or v == "43" or v == "27" or v == "23"
-                                            or v == "21" or v == "13" or v == "9"   then
-                                                VirtualInputManager:SendKeyEvent(true, i, false, game)
-                                                wait()
-                                                VirtualInputManager:SendKeyEvent(false, i, false, game)
-                                            end
-                                        end
-                                            end
-                                            game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
-                                                died = true
-                                            end) 
-                                            died = false          
-                                            game:GetService("Workspace").Scriptable.SpawnedMobs.ChildRemoved:Connect(function(mb)
-                                                    if mb == mobP.Parent then
-                                                        npcdied = true
-                                                    end
-                                             end)
-                                            npcdied = false
-                                            local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                                            local location = CFrame.new(mobP.Position)
-                                            local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                                            pl.CFrame = location
-                                            wait(2)
-                                            repeat
-                                                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
-                                                local location = CFrame.new(mobP.Position)
-                                                local humanoid = game.Players.LocalPlayer.Character.Humanoid
-                                                pl.CFrame = location
-                                                for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
-                                                    if v == "67" or v == "56" or v == "55" 
-                                                    or v == "43" or v == "27" or v == "23"
-                                                    or v == "21" or v == "13" or v == "9" or v == "17"   then
-                                                        else
-                                                            VirtualInputManager:SendKeyEvent(true, i, false, game)
-                                                            wait()
-                                                            VirtualInputManager:SendKeyEvent(false, i, false, game)
-                                                    end
-                                                    end 
-                                                until died == true or  getgenv().toggle7 == false or  npcdied == true     
-                                    end
-                                end
-                            else game.StarterGui:SetCore("SendNotification",{Title = "Bruh", Text = "You're not in dimension 2, are you stupid or what?", Duration = 5}) 
-                            end
-                            end
-                        end
-                        })
-                        
-                        
-                        for i, v in pairs(Themes) do
-                                    UI:setTheme({
-                                        theme = i,
-                                        color3 = v
-                                    })
-                        end
-                        
-                        -- // Load
-                        UI:SelectPage({
-                            page = UI.pages[1], 
-                            toggle = true
-                        })
-                        warn("NAM HUB Loaded")
-                        --Anti-afk
-                        local vu = game:GetService("VirtualUser")
-                        game:GetService("Players").LocalPlayer.Idled:connect(function()
-                        vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-                        wait(1)
-                        vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
-                        end)
-                        bc = BrickColor.new("Lime green")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Hi there";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(3)
-                        bc = BrickColor.new("Lime green")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Well here is what many of you have been asking for, the chakra script that massively increases power.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(7)
-                        bc = BrickColor.new("Lime green")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: You can find it on the training page, in the chakra section.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(5)
-                        bc = BrickColor.new("Toothpaste")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: I have several things to comment about this feature.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(5)
-                        bc = BrickColor.new("New Yeller")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Basically the best thing you can do is to try in which chakra zone it works best for you, for some it works in the spawn, for others it doesn't, it depends on your internet connection.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(9)
-                        bc = BrickColor.new("New Yeller")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: From my own experience i can say that the chakra zone of 1 UD always works, so if your chakra is greater than 1 UD, try there.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(5)
-                        bc = BrickColor.new("Really red")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Also keep in mind that if it doesn't work, change the server and try again, if you don't change the server it probably won't work.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(6)
-                        bc = BrickColor.new("Really red")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Be patient it will probably take you many tries.";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        wait(6)
-                        bc = BrickColor.new("Lime green")
-                        
-                        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                        
-                        Text = "[Scripter][Matrixplayer]: Well that's all for now ;3";
-                        
-                        Font = Enum.Font.Highway;
-                        
-                        Color = bc.Color;
-                        
-                        FontSize = Enum.FontSize.Size8;
-                        })
-                        else 
-                            bc = BrickColor.new("Really red")
-                        
-                            game.StarterGui:SetCore("ChatMakeSystemMessage", {
-                            
-                            Text = "System: You can't use this gui";
-                            
-                            Font = Enum.Font.Highway;
-                            
-                            Color = bc.Color;
-                            
-                            FontSize = Enum.FontSize.Size8;
-                            })
-                            game.StarterGui:SetCore("SendNotification",{Title = "Banned", Text = "You have been banned from this gui", Duration = 5})
-                            warn("You have been banned from this gui")
-                            wait(10)
-                            game:Shutdown()
-                        end
-                    else
-						bc = BrickColor.new("Really red")
-
-						game.StarterGui:SetCore("ChatMakeSystemMessage", {
-						
-						Text = "System: Key Wrong";
-						
-						Font = Enum.Font.Highway;
-						
-						Color = bc.Color;
-						
-						FontSize = Enum.FontSize.Size8;
-						})
-                        kick = kick + 1
-                        TextBox.PlaceholderText = "The Key is Wrong ;c" 
-                    end
-                    if kick == 5 then
-                        Background2:Destroy()
-                        matrixkey =nil
-						for i = 1, 50, 2 do
-							blur.Size = 50 - i
-							ImageLabel.ImageTransparency = ImageLabel.ImageTransparency + 0.1
-							wait()
-						end
-						blur:Destroy()
-						ScreenGui:Destroy()
-                        game.Players.LocalPlayer:Kick("Many attempts, you are not banned don't worry UwU")
-                    end
+local TrainStrength = Training1:addSection({
+    title = "Strength"
+})
+local TrainChakra = Training1:addSection({
+    title = "Chakra"
+})
+local TrainDurability = Training1:addSection({
+    title = "Durability"
+})
+local TrainSword = Training1:addSection({
+    title = "Sword"
+})
+local InfiniteSpins = Spins:addSection({
+    title = "Infinite Spins"
+})
+local TeleportP = Teleport1:addSection({
+    title = "Teleport to Players"
+})
+local TeleportD = Teleport1:addSection({
+    title = "Teleport to Dimensions"
+})
+local Conceal1 = Players1:addSection({
+    title = "Total Power"
+})
+local FarmMobs1 = Farm:addSection({
+    title = "AutoFarm Mobs Dimension 1"
+})
+local FarmMobs2 = Farm:addSection({
+    title = "AutoFarm Mobs Dimension 2"
+})
+wait(1)
+TrainStrength:addToggle({
+    title = "Train",
+    callback = function(Strength)
+        getgenv().toggle1 = Strength
+        while wait() do
+            if getgenv().toggle1 == true then
+             wait()
+             stats.SendToServer("Strength")
+            end
+        end
+    end
+})
+TrainChakra:addToggle({
+    title = "Train",
+    callback = function(Chakra)
+        getgenv().toggle2 = Chakra
+        while wait() do
+            if getgenv().toggle2 == true then
+                task.spawn(function()
+                    stats.SendToServer("Chakra")
                 end)
+            end
+            end
+    end
+})
+TrainChakra:addButton({
+    title = "Train Chakra OP",
+    callback = function()
+        game.StarterGui:SetCore("SendNotification",{Title = "Wait", Text = "It can take a minute or a little more to start training", Duration = 15})
+        coroutine.wrap(function()
+            while wait(60) do
+            for i=0, 14000 do
+                task.spawn(function()
+                    stats.SendToServer("Chakra")
+                end)
+            end
+        end
+        end)()
+    end
+})
+TrainChakra:addButton({
+    title = "Chakra Ultimate(In Testing)",
+    callback = function()
+        game.StarterGui:SetCore("SendNotification",{Title = "HEY", Text = "Wait a minute after executing the script, if it doesn't work, change the server and try again", Duration = 5})
+        wait(5)
+        game.StarterGui:SetCore("SendNotification",{Title = "Low chance", Text = "Just to remind you that there is little chance that it will work", Duration = 5})
+        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
+            if i == 1 then
+                bc = BrickColor.new("Hot pink")
+        
+                game.StarterGui:SetCore("ChatMakeSystemMessage", {
+                
+                Text = "System: Your current chakra is: " .. v;
+                
+                Font = Enum.Font.Highway;
+                
+                Color = bc.Color;
+                
+                FontSize = Enum.FontSize.Size8;
+                })
+            end
+        end
+        local Player = game.Players.LocalPlayer
+local Character = Player.Character
+local Humanoid = Character.Humanoid
+for i=1,2 do
+coroutine.wrap(function()
+coroutine.wrap(function()
+    for i = 1,5000 do 
+      task.spawn(function()
+        stats.SendToServer("Chakra")
+      end)
+    end
+  end)()
+end)()
+wait(.5)
+end
+wait(1)
+Humanoid.Health = 0
+wait(1)
+for i=1,3 do
+    coroutine.wrap(function()
+    coroutine.wrap(function()
+        for i = 1,5000 do 
+          task.spawn(function()
+            stats.SendToServer("Chakra")
+          end)
+        end
+      end)()
+    end)()
+    wait(.5)
+end
+for i=1,3 do
+wait(20)
+for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Stats"]["Chakra"]) do
+    if i == 1 then
+        bc = BrickColor.new("Hot pink")
 
+        game.StarterGui:SetCore("ChatMakeSystemMessage", {
+        
+        Text = "System: Your current chakra is: " .. v;
+        
+        Font = Enum.Font.Highway;
+        
+        Color = bc.Color;
+        
+        FontSize = Enum.FontSize.Size8;
+        })
+    end
+end
+end
+    end
+})
+TrainDurability:addToggle({
+    title = "Train",
+    callback = function(Durability)
+        getgenv().toggle3 = Durability
+        while wait() do
+            if getgenv().toggle3 == true then
+             stats.SendToServer("Durability")
+            end
+        end
+    end
+})
+TrainSword:addToggle({
+    title = "Train",
+    callback = function(Sword)
+        getgenv().toggle4 = Sword
+        if getgenv().toggle4 == true then game.StarterGui:SetCore("SendNotification",{Title = "Hey", Text = "Remember to equip the sword", Duration = 7})
+        while wait() do
+            if getgenv().toggle4 == true then
+             stats.SendToServer("Sword")
             end
         end
     end
 end
+})
+
+InfiniteSpins:addButton({
+    title = "Start Spining",
+    callback = function()
+        if game.PlaceId == 7220986579 or game.PlaceId == 7220975160 then 
+            for i = 0,100 do
+                task.spawn(function()
+                    while wait() do
+                    game:GetService("ReplicatedStorage").RSPackage.Events.GeneralFunction:InvokeServer("LotteryRandomDraw")
+                    game:GetService("ReplicatedStorage").RSPackage.Events.GeneralEvent:FireServer("SpinFinished")
+                    end
+                end)
+            end 
+        else 
+            game.StarterGui:SetCore("SendNotification",{Title = "Use it in dungeon", Text = "Only works in dungeons", Duration = 5})
+            wait(5)
+            game.StarterGui:SetCore("SendNotification",{Title = "Teleporting", Text = "You will be teleported to a dungeon", Duration = 5})
+            wait(5)
+            if random == 1 then game:GetService("TeleportService"):Teleport(7220975160)
+                elseif random == 2  then game:GetService("TeleportService"):Teleport(7220986579)
+                end
+            
+    end
+    end
+})
+TeleportP:addDropdown({
+    title = "Players",
+    list = playerl,
+    callback = function(jugador)
+        for _, value in pairs(game:GetService("Players"):GetPlayers()) do
+            if value.Name == jugador then
+               tp = value
+            end
+        end
+    end
+})
+TeleportP:addToggle({
+    title = "Teleport To Player",
+    callback = function(teleport)
+        getgenv().toggle5 = teleport
+        while wait() do
+            if getgenv().toggle5 == true then
+                for i2, v2 in pairs(tp.Character:GetChildren()) do
+                    if v2.Name == "HumanoidRootPart" then
+                       l = v2.Position
+                    end
+                end
+                task.spawn(function() 
+                    local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local location = CFrame.new(l)
+                    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                    pl.CFrame = location
+                    end)
+            end
+        end
+    end
+})
+TeleportD:addDropdown({
+    title = "Dimensions",
+    list = {"Dimension 1","Dimension 2","Dimension 3","Dimension 4","Dimension 5","Dimension 6",},
+    callback = function(dimension)
+        if dimension == "Dimension 1" then game:GetService("TeleportService"):Teleport(4042427666)
+        elseif dimension == "Dimension 2"  then game:GetService("TeleportService"):Teleport(5113678354) 
+        elseif dimension == "Dimension 3"  then game:GetService("TeleportService"):Teleport(5113680396) 
+        elseif dimension == "Dimension 4"  then game:GetService("TeleportService"):Teleport(5445525505) 
+        elseif dimension == "Dimension 5"  then game:GetService("TeleportService"):Teleport(6479720355) 
+        elseif dimension == "Dimension 6"  then game:GetService("TeleportService"):Teleport(9386500519) 
+        end
+    end
+})
+Conceal1:addButton({
+    title = "See Total Power of all players",
+    callback = function()
+        while wait() do
+            local players = game.Players:GetPlayers()
+            for i, v in pairs(players) do
+                 for i2, v2 in pairs(v.Character:GetChildren()) do
+                    if v2.Name == "HumanoidRootPart" then
+                        for i3, v3 in pairs(v2:GetChildren()) do
+                            if v3.Name == "TotalPower" then
+                                if v3.Enabled == false then
+                                    v3.Enabled = true
+                                    for i4, v4 in pairs(v3:GetChildren()) do
+                                        if v4.Name == "Num" then
+                                            v4.TextColor3 = Color3.new(0, 0.717647, 1) 
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            game.Players.PlayerAdded:Connect(function(player)
+                wait(7)
+                while wait(2) do
+               local players = game.Players:GetPlayers()
+            for i, v in pairs(players) do
+                for i2, v2 in pairs(v.Character:GetChildren()) do
+                   if v2.Name == "HumanoidRootPart" then
+                       for i3, v3 in pairs(v2:GetChildren()) do
+                           if v3.Name == "TotalPower" then
+                               if v3.Enabled == false then
+                                   v3.Enabled = true
+                                   for i4, v4 in pairs(v3:GetChildren()) do
+                                    if v4.Name == "Num" then
+                                        v4.TextColor3 = Color3.new(0, 0.717647, 1) 
+                                    end
+                                end
+                               end
+                           end
+                       end
+                   end
+               end
+            end
+            end
+            end)
+            wait(6)
+            end
+    end
+})
+FarmMobs1:addDropdown({
+    title = "Mobs",
+    list = {"Weak Ninja","Masked Ninja","Strong Ninja","Bain","Marado","Small Crystal","Large Crystal",},
+    callback = function(mob)
+        mob1 = mob
+    end
+})
+FarmMobs1:addToggle({
+    title = "Farm",
+    callback = function(AutoFarm)
+        getgenv().toggle6 = AutoFarm
+        if getgenv().toggle6 == true then
+        if game.PlaceId == 4042427666 then
+        while wait() do
+            if getgenv().toggle6 == true then
+                if died == true then
+                    wait(6)
+                end
+                for i, v in pairs(game:GetService("Workspace").Scriptable.SpawnedMobs:GetChildren()) do
+                    if v.Name == mob1  then
+                        for i2, v2 in pairs(v:GetChildren()) do
+                            if  v2.Name == "Hitpart" then
+                                mobP = v2
+                            end
+                        end
+                    end
+                end
+                 if npcdied == false or died == true then
+                for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
+                    if v == "67" or v == "56" or v == "55" 
+                    or v == "43" or v == "27" or v == "23"
+                    or v == "21" or v == "13" or v == "9"   then
+                        VirtualInputManager:SendKeyEvent(true, i, false, game)
+                        wait()
+                        VirtualInputManager:SendKeyEvent(false, i, false, game)
+                    end
+                end
+                    end
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+                        died = true
+                    end) 
+                    died = false          
+                    game:GetService("Workspace").Scriptable.SpawnedMobs.ChildRemoved:Connect(function(mb)
+                            if mb == mobP.Parent then
+                                npcdied = true
+                            end
+                     end)
+                    npcdied = false
+                    local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local location = CFrame.new(mobP.Position)
+                    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                    pl.CFrame = location
+                    wait(2)
+                    repeat
+                        local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                        local location = CFrame.new(mobP.Position)
+                        local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                        pl.CFrame = location
+                        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
+                            if v == "67" or v == "56" or v == "55" 
+                            or v == "43" or v == "27" or v == "23"
+                            or v == "21" or v == "13" or v == "9" or v == "17"   then
+                                else
+                                    VirtualInputManager:SendKeyEvent(true, i, false, game)
+                                    wait()
+                                    VirtualInputManager:SendKeyEvent(false, i, false, game)
+                            end
+                            end 
+     
+                        until died == true or  getgenv().toggle6 == false or  npcdied == true     
+            end
+        end
+    else game.StarterGui:SetCore("SendNotification",{Title = "Bruh", Text = "You're not in dimension 1, are you stupid or what?", Duration = 5}) 
+    end
+    end
+end
+})
+FarmMobs2:addDropdown({
+    title = "Mobs",
+    list = {"Seed","Kappa","Jinu Squad","Mito","Boo","Small Namekian Crystal",},
+    callback = function(mob)
+        mob1 = mob
+    end
+})
+FarmMobs2:addToggle({
+    title = "Farm",
+    callback = function(AutoFarm)
+        getgenv().toggle7 = AutoFarm
+        if getgenv().toggle7 == true then
+        if game.PlaceId == 5113678354 then
+        while wait() do
+            if getgenv().toggle7 == true then
+                if died == true then
+                    wait(6)
+                end
+                for i, v in pairs(game:GetService("Workspace").Scriptable.SpawnedMobs:GetChildren()) do
+                    if v.Name == mob1  then
+                        for i2, v2 in pairs(v:GetChildren()) do
+                            if  v2.Name == "Hitpart" then
+                                mobP = v2
+                            end
+                        end
+                    end
+                end
+                 if npcdied == false or died == true then
+                for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
+                    if v == "67" or v == "56" or v == "55" 
+                    or v == "43" or v == "27" or v == "23"
+                    or v == "21" or v == "13" or v == "9"   then
+                        VirtualInputManager:SendKeyEvent(true, i, false, game)
+                        wait()
+                        VirtualInputManager:SendKeyEvent(false, i, false, game)
+                    end
+                end
+                    end
+                    game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+                        died = true
+                    end) 
+                    died = false          
+                    game:GetService("Workspace").Scriptable.SpawnedMobs.ChildRemoved:Connect(function(mb)
+                            if mb == mobP.Parent then
+                                npcdied = true
+                            end
+                     end)
+                    npcdied = false
+                    local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    local location = CFrame.new(mobP.Position)
+                    local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                    pl.CFrame = location
+                    wait(2)
+                    repeat
+                        local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                        local location = CFrame.new(mobP.Position)
+                        local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                        pl.CFrame = location
+                        for i, v in pairs(debug.getupvalues(client.UpdateFruits)[2]["Data"]["Powers"]) do
+                            if v == "67" or v == "56" or v == "55" 
+                            or v == "43" or v == "27" or v == "23"
+                            or v == "21" or v == "13" or v == "9" or v == "17"   then
+                                else
+                                    VirtualInputManager:SendKeyEvent(true, i, false, game)
+                                    wait()
+                                    VirtualInputManager:SendKeyEvent(false, i, false, game)
+                            end
+                            end 
+                        until died == true or  getgenv().toggle7 == false or  npcdied == true     
+            end
+        end
+    else game.StarterGui:SetCore("SendNotification",{Title = "Bruh", Text = "You're not in dimension 2, are you stupid or what?", Duration = 5}) 
+    end
+    end
+end
+})
+
+
+for i, v in pairs(Themes) do
+            UI:setTheme({
+                theme = i,
+                color3 = v
+            })
 end
 
+-- // Load
+UI:SelectPage({
+    page = UI.pages[1], 
+    toggle = true
+})
+--Anti-afk
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+end)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Hi there";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(3)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Well here is what many of you have been asking for, the chakra script that massively increases power.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(7)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: You can find it on the training page, in the chakra section.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(5)
+bc = BrickColor.new("Toothpaste")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: I have several things to comment about this feature.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(5)
+bc = BrickColor.new("New Yeller")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Basically the best thing you can do is to try in which chakra zone it works best for you, for some it works in the spawn, for others it doesn't, it depends on your internet connection.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(9)
+bc = BrickColor.new("New Yeller")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: From my own experience i can say that the chakra zone of 1 UD always works, so if your chakra is greater than 1 UD, try there.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(5)
+bc = BrickColor.new("Really red")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Also keep in mind that if it doesn't work, change the server and try again, if you don't change the server it probably won't work.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(6)
+bc = BrickColor.new("Really red")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Be patient it will probably take you many tries.";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+wait(6)
+bc = BrickColor.new("Lime green")
+
+game.StarterGui:SetCore("ChatMakeSystemMessage", {
+
+Text = "[Scripter][Matrixplayer]: Well that's all for now ;3";
+
+Font = Enum.Font.Highway;
+
+Color = bc.Color;
+
+FontSize = Enum.FontSize.Size8;
+})
+else 
+    bc = BrickColor.new("Really red")
+
+    game.StarterGui:SetCore("ChatMakeSystemMessage", {
+    
+    Text = "System: You can't use this gui";
+    
+    Font = Enum.Font.Highway;
+    
+    Color = bc.Color;
+    
+    FontSize = Enum.FontSize.Size8;
+    })
+    game.StarterGui:SetCore("SendNotification",{Title = "Banned", Text = "You have been banned from this gui", Duration = 5})
+    warn("You have been banned from this gui")
+    wait(10)
+    game:Shutdown()
+end
