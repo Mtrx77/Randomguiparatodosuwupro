@@ -233,9 +233,11 @@ for i, v in pairs(plrGui:GetChildren()) do
 							ImageLabel.ImageTransparency = ImageLabel.ImageTransparency + 0.1
 							wait()
 						end
+                        wait()
 						blur:Destroy()
 						ScreenGui:Destroy()
                         Background2:Destroy()
+                        wait()
                         if game.Players.LocalPlayer.UserId ~= 1617220336 and game.Players.LocalPlayer.UserId ~= 292497312 and game.Players.LocalPlayer.UserId ~= 1666771059
                         and game.Players.LocalPlayer.UserId ~= 1739491684 and game.Players.LocalPlayer.UserId ~= 1517621440 and game.Players.LocalPlayer.UserId ~= 2539181650  then
                         -- Variables
@@ -250,6 +252,7 @@ for i, v in pairs(plrGui:GetChildren()) do
                         local VirtualInputManager = game:GetService('VirtualInputManager')
                         local died = false
                         local npcdied = false
+                        wait()
                         warn("NAM HUB Loading")
                         --algunos ciclos
                         for i, v in pairs(game:GetService("Players"):GetPlayers()) do
@@ -267,6 +270,7 @@ for i, v in pairs(plrGui:GetChildren()) do
                              end
                             end
                             end)
+                            wait()
                         -- // Initialising the UI
                         local Venyx = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Venyx-UI-Library/main/source2.lua"))()
                         local UI = Venyx.new({
@@ -936,3 +940,4 @@ for i, v in pairs(plrGui:GetChildren()) do
     end
 end
 end
+
